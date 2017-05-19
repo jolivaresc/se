@@ -53,21 +53,11 @@ public class frame extends javax.swing.JFrame {
             q5 = new Query(
                     new Compound( 
                             "parent",
-                            new Term[] {new Atom("tom"),new Atom("bodb")}
+                            new Term[] {new Atom("tom"),new Atom("bob")}
                     )
             );
-            
-            
             System.out.println("parent(tom,bob) is "+q5.hasSolution());
 
-
-            
-            /*String query_a = "hair("+A+","+B+","+C+","+D+").";
-            Query Exe;
-            Exe = new Query(query_a);
-            if (Exe.hasSolution()) {
-                jTextField2.setText("La suma es: "+Exe.oneSolution().get("query_a").toString());
-            }*/
         }catch(Exception e)
         {
             System.out.println(e);
