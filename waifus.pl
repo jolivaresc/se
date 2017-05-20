@@ -49,6 +49,20 @@ ark(shana, loli).
 ark(gokou_ruri, loli).
 ark(aisaka_taiga, loli).
 ark(shiro, loli).
+ark(asahina_mikuru, dojikko).
+ark(yazawa_nico, tsundere).
+ark(aragaki_ayase, tsundere).
+ark(aragaki_ayase, yandere).
+
+
+/*---- es idol?-----------*/
+
+idol(yazawa_nico).
+idol(nishikino_maki).
+idol(hatsune_miku).
+idol(megurine_luka).
+
+/*-------donde sale--------------------*/
 
 appears_on(hatsune_miku, vocaloid).
 appears_on(megurine_luka, vocaloid).
@@ -90,6 +104,9 @@ appears_on(shirayuki_mizore, rosario_vampire).
 appears_on(bristol_lilith, absolute_duo).
 appears_on(yoshino, date_alive).
 appears_on(shiro, no_game_no_life).
+appears_on(asahina_mikuru, haruhi_no_yuutsu).
+appears_on(yazawa_nico, love_live).
+appears_on(aragaki_ayase, oreimo).
 
 /*---------------Color de Cabello--------------------*/
 
@@ -99,7 +116,7 @@ hair(shana, light, red, long).
 hair(hino_rei, dark, brown, long).
 hair(haruno_sakura, light, pink, short).
 hair(aisaka_taiga, light, brown, long).
-hair(kirisaki_chitoge, light, blonde, long).       /*aqui me puse a filosofar si es que existe el rubio oscuro XDDDD*/
+hair(kirisaki_chitoge, light, blonde, long).    /*aqui me puse a filosofar si es que existe el rubio oscuro XDDDD*/
 hair(kazami_mizuho, light, red, long).
 hair(reikadou_ayame, light, blonde, long).
 hair(langley_asuka, light, orange, long).
@@ -110,8 +127,7 @@ hair(nakamura_yuri, light, purple, long).
 hair(nishikino_maki, dark, red, long).
 hair(ouma_mana, light, pink, long).
 hair(ayuzawa_mizaki, dark, brown, long).
-hair(katsura_kotonoha, dark, black, long).  
-/*y aqui si existe el negro claro xP */
+hair(katsura_kotonoha, dark, black, long).  /*y aqui si existe el negro claro xP */
 hair(sonosaki_shion, light, green, long).
 hair(ryuugu_rena, light, orange, short).
 hair(tokisaki_kurumi, dark, black, long).
@@ -131,7 +147,9 @@ hair(shirayuki_mizore, light, purple, short).
 hair(bristol_lilith, light, blonde, long).
 hair(yoshino, light, blue, long).
 hair(shiro, light, blue, long).
-
+hair(asahina_mikuru, light, brown, long).
+hair(yazawa_nico, dark, black, long).
+hair(aragaki_ayase, dark, blue, long).
 
 /*---------------------Tipo de ojos------------------*/
 
@@ -162,7 +180,7 @@ eyes(suzumiya_haruhi, dark, brown).
 eyes(nagato_yuki, dark, brown).
 eyes(akame, dark, red).
 eyes(mizaki_mei, dark, brown).
-eyes(ikaros, light, emerald).
+eyes(ikaros, light, blue).
 eyes(yuzuriha_inori, light, red).
 eyes(akiyama_mio, dark, black).
 eyes(onodere_kosaki, dark, brown).
@@ -172,6 +190,18 @@ eyes(shirayuki_mizore, light, blue).
 eyes(bristol_lilith, light, blue).
 eyes(yoshino, light, blue).
 eyes(shiro, light, (yellow, red)).
+eyes(asahina_mikuru, ligth, brown).
+eyes(yazawa_nico, light, red).
+eyes(aragaki_ayase, dark, violet).
+
+/*--------------------reglas de gustos-----------------*/
+like(violent_char, tsundere).    /* le gusta al usuario que su waifu caracter violento*/. 
+like(love, (tsundere & moe)).    /* le gusta al usuario que su waifu tenga un caracter carinioso */ 
+like(inf_char, loli).    /* le gusta al usuario que su waifu tenga caracter infantil*/ 
+like(blood, yandere).    /* le gusta al usuario que su waifu tenga gusto por la sangre */ 
+like(sadic, yandere).    /* le gusta al usuario que su waifu tenga caracter sadico */ 
+like(princess_treat, himedere).    /* le gusta al usuario tratar como princesa waifu */ 
+like(vio_against_enemy, yangire). /* caracter violento hacia sus antagonistas */ 
 
 /*-----------------------Reglas-------------------*/
 
