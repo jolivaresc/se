@@ -32,6 +32,8 @@ public class interfazwaifu extends javax.swing.JFrame {
     //pregunta, respuestas e indice de pregunta asignados.
     public static int qcounter = 0;
     public static int answnum = 100; //numero de respuesta que se van a usar
+    //la variable de arriba se refiere a la respuesta qu el usuario da.
+    //las opciones de las preguntas se mandan a llamar con el metodo
     public static String[] answ = new String[answnum];
     
     /**
@@ -108,7 +110,7 @@ public class interfazwaifu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+     //aqui no va nada        
        
         
     }//GEN-LAST:event_jButton1ActionPerformed
