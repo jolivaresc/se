@@ -31,10 +31,13 @@ public class interfazwaifu extends javax.swing.JFrame {
     //estaba usando la declaracion de cadenas, pero es mejor usar un objetos que tengan, 
     //pregunta, respuestas e indice de pregunta asignados.
     public static int qcounter = 0;
-    public static int answnum = 100; //numero de respuesta que se van a usar
+    public static int answnum = 20; //numero de respuesta que se van a usar
     //la variable de arriba se refiere a la respuesta qu el usuario da.
     //las opciones de las preguntas se mandan a llamar con el metodo
     public static String[] answ = new String[answnum];
+    public static quest_index[] array_of_questions = new quest_index[20]; //arreglo de preguntas que haremos.
+    //hubo un problema quee tenia en que no podia usar mi arreglo de preguntas 
+    //y tuve que declararlo como un arreglo publico al inicio del programa.
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,12 +98,17 @@ public class interfazwaifu extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 100, 100);
+        jPanel1.setBounds(0, 0, 0, 0);
 
         jButton2.setText("Siguiente");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
@@ -119,9 +127,35 @@ public class interfazwaifu extends javax.swing.JFrame {
        //boton inicio.
        qcounter = 0; // este contador nos dira en que pregunta vamos, si empezamos vuelve a cero.
        //hay que limpiar el arreglo donde vayamos guardando las respuestas. 
-       quest_index[] array_of_questions = new quest_index[10]; //arreglo de preguntas que haremos.
-       String[] resp1 = {"dark", "light"};
-       array_of_questions[0] = new quest_index(1, "Que tipo de pelo te gusta mas", resp1); 
+       //quest_index[] array_of_questions = new quest_index[10]; //arreglo de preguntas que haremos.
+       String[] resp1 = {"oscuro", "claro"};
+       String[] resp2 = {"largo", "corto"};
+       String[] resp3 = {"rojo", "anaranjado", "rubio", "verde", "azul", "morado", "cafe", "negro", "blanco", "rosa"};
+       String[] resp4 = {"rojos", "anaranjados", "amarilos", "verdes", "azuls", "morados", "cafes", "negros", "blancos", "rosas", "de dos colores"};
+       String[] respb = {"si", "no"};
+       String[] resp5 = {"< 14", "de 15 a 17", "de 17 a 22", "> a 22"};
+       String[] resps = {"comedia", "drama", "terror", "escolar", "chicas magicas", "shonen", "mecha"};
+       array_of_questions[0] = new quest_index(0, "¿Que tipo de pelo te gusta mas?", resp1); 
+       array_of_questions[1] = new quest_index(1, "¿Que tan largo prefieres el cabello?", resp2);
+       array_of_questions[2] = new quest_index(2, "¿Que color de cabello te gusta mas?", resp3); 
+       array_of_questions[3] = new quest_index(3, "¿Que tipo de ojos prefiere?", resp1); 
+       array_of_questions[4] = new quest_index(4, "¿Que color de ojos te gustan mas?", resp4); 
+       array_of_questions[5] = new quest_index(5, "¿De que rango de edad te gustaria tu waifu?", resp5); 
+       array_of_questions[6] = new quest_index(6, "¿Te gustan las chicas de caracter dulce y cariñoso?", respb); 
+       array_of_questions[7] = new quest_index(7, "¿Te agradan las chicas de caracter violento?", respb);
+       array_of_questions[8] = new quest_index(8, "¿Te gustan las chicas obsesivas?", respb);
+       array_of_questions[9] = new quest_index(9, "¿Te agradan las chicas con impulsos asesinos?", respb);
+       array_of_questions[10] = new quest_index(10, "¿Te gustaria tratar a tu waifu como princesa?", respb);
+       array_of_questions[11] = new quest_index(11, "¿Te gustaria una chica inexpresiva y que hable poco?", respb);
+       array_of_questions[12] = new quest_index(12, "¿Te gustan las chicas lindas pero torpes?", respb);
+       array_of_questions[13] = new quest_index(13, "¿Te gustan los cambios subitos de personalidad tranquilo a violento?", respb);
+       array_of_questions[14] = new quest_index(14, "¿Te gustan las chicas con caracter infantil?", respb);
+       array_of_questions[15] = new quest_index(15, "¿Te gustan las chicas con caracterisiticas de gato?", respb);
+       array_of_questions[16] = new quest_index(16, "¿Te gustan las chicas con algunos rasgos masculinos?", respb);
+       array_of_questions[17] = new quest_index(17, "¿Te gustaria una waifu energica y alegre?", respb);
+       array_of_questions[18] = new quest_index(18, "¿Te gusta un toque refinado y educado?", respb);   
+       array_of_questions[19] = new quest_index(19, "¿Que genero de series te gusta mas?", resps);
+       
        //tuve un problema en la linea anterior, es importante recalcar que el constructor funciona
        //con new, de esta forma ya esta creada y declarada la pregunta y sus respuestas.
        //String[] respuesta1 = new String[2];
@@ -133,17 +167,38 @@ public class interfazwaifu extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         //int ind = jList1.getLeadSelectionIndex();
-        String selection = jList1.getSelectedValue();
-        jLabel2.setText(selection);
-        answ[qcounter] = selection; //guardar en la respuesta en nuestro arreglo de respuestas dadas.
-        qcounter = qcounter + 1;
+        if(qcounter < 20)
+                
+                {
+                     String selection = jList1.getSelectedValue();
+                     jLabel2.setText(selection);
+                     answ[qcounter] = selection; //guardar en la respuesta en nuestro arreglo de respuestas dadas.
+                     qcounter = qcounter + 1;
+                     pregunta_resp_list(array_of_questions[qcounter]);
+                }
+        else
+        {
+            jButton2.setText("Resultado");
+            dict_change(answ);
+            //jList1.setListData(answ);
+        }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void pregunta_resp_list(quest_index v1)
     {
         jList1.setListData(v1.getresponses()); //imprimir respuestas
         jLabel1.setText(v1.getquestionstring()); //imprimir pregunta
         
+    }
+
+    private void dict_change(String[] v1) {
+        //metodo para cmabiar las palabras por lo que se va a consultar
+        //con la base de conocimiento.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public class quest_index
