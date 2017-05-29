@@ -1,0 +1,16 @@
+Bro!, tengo unas dudas  sobre como recibir las respuestas del motor
+de inferencias, estoy viendo que si crea la cadena por ejemplo "hair(X, dark, orange, long)"
+como se llama la variable strinf donde se guardan las respuestas¿?
+la verdad no pude cacharla, espero nos podamos ver proximamente,
+agregue el diccionario y ya esta la parte de los gustos listo para
+que la funcion likes(X,Y) pueda funcionar, programare algunas funciones de utilidad 
+en el waifus.pl, espero esto quede esta semana.... suerte!+
+
+contestame por aqui o por whats plox
+
+
+PD:
+JAJAJA, ya vi, ya funciona de lux!, quedo muy bien, ya guarda las variables, esta perfecto,
+creo que las inferencias se haran solo desde el .pl para no meternos en lios,
+solo mandaremos a una sola consulta que nos dara las respuesta para que esto ya este
+un saludo JL!, parece todo va bien!

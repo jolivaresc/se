@@ -1,4 +1,4 @@
-package PROLOG;
+package pdef;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -315,6 +315,7 @@ public class interfazwaifu extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
         String[] hair = {answ[0],answ[1],answ[2]};
         String[] eyes = {answ[3],answ[4]};
+        String age = answ[5];
         String[] hairMap,eyesMap;
         hairMap = Consulta("hair","X",hair.length, hair);
         System.out.println("hair");
@@ -340,7 +341,42 @@ public class interfazwaifu extends javax.swing.JFrame {
     private void dict_change(String[] v1) {
         //metodo para cmabiar las palabras por lo que se va a consultar
         //con la base de conocimiento.
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(answ[5] == "< 14") //cambio las respuestas dadas por variables  ----->
+           answ[5]= "a"; // que el prolog pueda entender para que pueda hacer la inferencia de respuestas.
+        if(answ[5] == "from 15 to 17") //VER LA SECCION %EDADES Y %GUSTOS de waifus.pl
+           answ[5]= "b";
+        if(answ[5] == "from 17 to 22")
+           answ[5]= "c";
+        if(answ[5] == ">  22")
+           answ[5]= "d";
+        if(answ[6] == "yes")
+           answ[6]= "love";
+        if(answ[7] == "yes")
+           answ[7]= "violent_char";
+        if(answ[8] == "yes")
+           answ[8]= "obsesive";
+        if(answ[9] == "yes")
+           answ[9]= "sadic";
+        if(answ[10] == "yes")
+           answ[10]= "princess_treat";
+        if(answ[11] == "yes")
+           answ[11]= "inexpressive";
+        if(answ[12] == "yes")
+           answ[12]= "clumsy";
+        if(answ[13] == "yes")
+           answ[13]= "two_person";
+        if(answ[14] == "yes")
+           answ[14]= "inf_char";
+        if(answ[15] == "yes")
+           answ[15]= "cat_char";
+        if(answ[16] == "yes")
+           answ[16]= "masc_char";
+        if(answ[17] == "yes")
+           answ[17]= "happy";
+        if(answ[18] == "yes")
+           answ[19]= "refinade";
+   
     }
 
     private Object array(Term[] terminos) {
