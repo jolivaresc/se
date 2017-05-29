@@ -4,4 +4,6 @@ como se llama la variable strinf donde se guardan las respuestas¿?
 la verdad no pude cacharla, espero nos podamos ver proximamente,
 agregue el diccionario y ya esta la parte de los gustos listo para
 que la funcion likes(X,Y) pueda funcionar, programare algunas funciones de utilidad 
-en el waifus.pl, espero esto quede esta semana.... suerte!
+en el waifus.pl, espero esto quede esta semana.... suerte!+
+
+contestame por aqui o por whats plox
