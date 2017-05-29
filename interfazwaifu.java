@@ -256,7 +256,12 @@ public class interfazwaifu extends javax.swing.JFrame {
         qtmp = new Query(tmpC);
         System.out.println(qtmp.toString());        
         System.out.println(qtmp.hasSolution());
-        //Map<String,Term> solution;
+        Map<String,Term> solution;
+        while(qtmp.hasMoreSolutions())
+        {
+            solution = qtmp.nextSolution();
+            System.out.println("Waifu X" +solution.get(X));
+        }
         /*
         
         Query consulta = new Query(
