@@ -33,6 +33,17 @@ public class interfazwaifu extends javax.swing.JFrame {
         //System.out.println( answ[0]);
         //Ocultar botón 'Siguiente'
         jButton2.setVisible(bandera);
+        
+        Query consulta = new Query(
+            new Compound(
+                "consult",
+                new Term [] {new Atom("waifus.pl")}
+            )            
+        );
+        if (consulta.hasSolution())
+            System.out.println("TRUE");
+        else
+            System.out.println("FALSE");
     }
     
     //public static String pre1 = "¿Como prefieres el tipo de cabello?";
@@ -172,14 +183,14 @@ public class interfazwaifu extends javax.swing.JFrame {
        array_of_questions[9] = new quest_index(9, "Do you like the girls with assasin impulses?", respb);
        array_of_questions[10] = new quest_index(10, "Do you like to treatyour waifu like a princess?", respb);
        array_of_questions[11] = new quest_index(11, "Do you like the inxpresive/quiet girls?", respb);
-       array_of_questions[12] = new quest_index(12, "Do yyou like the cute and clumsy girls?", respb);
+       array_of_questions[12] = new quest_index(12, "Do you like the cute and clumsy girls?", respb);
        array_of_questions[13] = new quest_index(13, "Do you like the changes of personality forn paceful to violent?", respb);
        array_of_questions[14] = new quest_index(14, "Do you like the girls with infantile personality?", respb);
        array_of_questions[15] = new quest_index(15, "Do you like the girls with cat's characters?", respb);
        array_of_questions[16] = new quest_index(16, "Do you like the girls with masculine features?", respb);
        array_of_questions[17] = new quest_index(17, "Do you like a energic and happy waifu?", respb);
        array_of_questions[18] = new quest_index(18, "Do you prefer a waifu with a refined and cult touch?", respb);   
-       array_of_questions[19] = new quest_index(19, "What genere of series do you like the most?", resps);
+       array_of_questions[19] = new quest_index(19, "What genre of series do you like the most?", resps);
        
        //tuve un problema en la linea anterior, es importante recalcar que el constructor funciona
        //con new, de esta forma ya esta creada y declarada la pregunta y sus respuestas.
@@ -226,17 +237,6 @@ public class interfazwaifu extends javax.swing.JFrame {
 
     public void Consulta(String functionName,String X, int preguntas, String[] arregloQuery)
     {
-        Query consulta = new Query(
-            new Compound(
-                "consult",
-                new Term [] {new Atom("waifus.pl")}
-            )            
-        );
-        if (consulta.hasSolution())
-            System.out.println("TRUE");
-        else
-            System.out.println("FALSE");
-        
         Compound tmpC;
         Term[] tmpT;
         tmpT = new Term[1 + arregloQuery.length];
@@ -260,7 +260,7 @@ public class interfazwaifu extends javax.swing.JFrame {
         while(qtmp.hasMoreSolutions())
         {
             solution = qtmp.nextSolution();
-            System.out.println("Waifu X" +solution.get(X));
+            System.out.println("Waifu X: " +solution.get(X));
         }
         /*
         
