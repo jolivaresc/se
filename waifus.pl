@@ -277,7 +277,8 @@ hair(nakamura_yuri, light, purple, long).
 hair(nishikino_maki, dark, red, long).
 hair(ouma_mana, light, pink, long).
 hair(ayuzawa_mizaki, dark, brown, long).
-hair(katsura_kotonoha, dark, black, long).  /*y aqui si existe el negro claro xP */
+hair(katsura_kotonoha, dark, black, long).  
+/*y aqui si existe el negro claro xP */
 hair(sonosaki_shion, light, green, long).
 hair(ryuugu_rena, light, orange, short).
 hair(tokisaki_kurumi, dark, black, long).
