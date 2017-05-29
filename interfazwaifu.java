@@ -7,7 +7,9 @@ package PROLOG;
  */
 //package pdef;
 
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 import javax.swing.*;
 
@@ -172,8 +174,8 @@ public class interfazwaifu extends javax.swing.JFrame {
        String[] resp5 = {"< 14", "from 15 to 17", "from 17 to 22", ">  22"};
        String[] resps = {"comedy", "drama", "suspense", "schoolar", "magical girls", "shonen", "mecha"};
        array_of_questions[0] = new quest_index(0, "What kind of hair do you like the most?", resp1); 
-       array_of_questions[1] = new quest_index(1, "what kind of long do you like the most?", resp2);
-       array_of_questions[2] = new quest_index(2, "What color do you like the most?", resp3); 
+       array_of_questions[1] = new quest_index(1, "What color do you like the most?", resp2);
+       array_of_questions[2] = new quest_index(2, "what kind of long do you like the most?", resp3); 
        array_of_questions[3] = new quest_index(3, "What kind of eyes do you like the most?", resp1); 
        array_of_questions[4] = new quest_index(4, "What color of eyes do you like the most?", resp4); 
        array_of_questions[5] = new quest_index(5, "How old do you prefer your Waifu?", resp5); 
@@ -235,7 +237,15 @@ public class interfazwaifu extends javax.swing.JFrame {
         }
     }                                     
 
-    public void Consulta(String functionName,String X, int preguntas, String[] arregloQuery)
+    /**
+     *
+     * @param functionName
+     * @param X
+     * @param preguntas
+     * @param arregloQuery
+     * @return
+     */
+    public String[] Consulta(String functionName,String X, int preguntas, String[] arregloQuery)
     {
         Compound tmpC;
         Term[] tmpT;
@@ -257,11 +267,17 @@ public class interfazwaifu extends javax.swing.JFrame {
         System.out.println(qtmp.toString());        
         System.out.println(qtmp.hasSolution());
         Map<String,Term> solution;
+        String[] vars= new String[qtmp.allSolutions().length];
+        int i=0;        
         while(qtmp.hasMoreSolutions())
         {
             solution = qtmp.nextSolution();
-            System.out.println("Waifu X: " +solution.get(X));
+            System.out.println(functionName+"Waifu X: " +solution.get(X));
+            vars[i] = solution.get(X).toString();
+            i++;
         }
+        
+        return vars;
         /*
         
         Query consulta = new Query(
@@ -289,6 +305,7 @@ public class interfazwaifu extends javax.swing.JFrame {
         tmp = new Query(tmppp);
         System.out.println(tmp.hasSolution());
         */
+        
     }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -296,10 +313,19 @@ public class interfazwaifu extends javax.swing.JFrame {
     }                                        
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        String[] tmp = {answ[0],answ[1],answ[2]};
-        
-        Consulta("hair","X",tmp.length, tmp);        
-        //System.out.println("asdasd "+Consulta1[0]);
+        String[] hair = {answ[0],answ[1],answ[2]};
+        String[] eyes = {answ[3],answ[4]};
+        String[] hairMap,eyesMap;
+        hairMap = Consulta("hair","X",hair.length, hair);
+        System.out.println("hair");
+        for (String hairMap1 : hairMap) {
+            System.out.println(hairMap1); 
+        }
+        eyesMap = Consulta("eyes","X",eyes.length, eyes);
+        System.out.println("eyes");
+        for (String eyesMap1 : eyesMap) {
+            System.out.println(eyesMap1); 
+        }
     }                                     
     
    
