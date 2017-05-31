@@ -1,11 +1,11 @@
-//package PROLOG;
+package PROLOG;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pdef;
+//package pdef;
 
 import java.awt.List;
 import java.util.ArrayList;
@@ -347,39 +347,39 @@ public class interfazwaifu extends javax.swing.JFrame {
         //metodo para cmabiar las palabras por lo que se va a consultar
         //con la base de conocimiento.
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        if(answ[5] == "< 14") //cambio las respuestas dadas por variables  ----->
+        if("< 14".equals(answ[5])) //cambio las respuestas dadas por variables  ----->
            answ[5]= "a"; // que el prolog pueda entender para que pueda hacer la inferencia de respuestas.
-        if(answ[5] == "from 15 to 17") //VER LA SECCION %EDADES Y %GUSTOS de waifus.pl
+        if("from 15 to 17".equals(answ[5])) //VER LA SECCION %EDADES Y %GUSTOS de waifus.pl
            answ[5]= "b";
-        if(answ[5] == "from 17 to 22")
+        if("from 17 to 22".equals(answ[5]))
            answ[5]= "c";
-        if(answ[5] == ">  22")
+        if(">  22".equals(answ[5]))
            answ[5]= "d";
-        if(answ[6] == "yes")
+        if("yes".equals(answ[6]))
            answ[6]= "love";
-        if(answ[7] == "yes")
+        if("yes".equals(answ[7]))
            answ[7]= "violent_char";
-        if(answ[8] == "yes")
+        if("yes".equals(answ[8]))
            answ[8]= "obsesive";
-        if(answ[9] == "yes")
+        if("yes".equals(answ[9]))
            answ[9]= "sadic";
-        if(answ[10] == "yes")
+        if("yes".equals(answ[10]))
            answ[10]= "princess_treat";
-        if(answ[11] == "yes")
+        if("yes".equals(answ[11]))
            answ[11]= "inexpressive";
-        if(answ[12] == "yes")
+        if("yes".equals(answ[12]))
            answ[12]= "clumsy";
-        if(answ[13] == "yes")
+        if("yes".equals(answ[13]))
            answ[13]= "two_person";
-        if(answ[14] == "yes")
+        if("yes".equals(answ[14]))
            answ[14]= "inf_char";
-        if(answ[15] == "yes")
+        if("yes".equals(answ[15]))
            answ[15]= "cat_char";
-        if(answ[16] == "yes")
+        if("yes".equals(answ[16]))
            answ[16]= "masc_char";
-        if(answ[17] == "yes")
+        if("yes".equals(answ[17]))
            answ[17]= "happy";
-        if(answ[18] == "yes")
+        if("yes".equals(answ[18]))
            answ[19]= "refinade";
    
     }
