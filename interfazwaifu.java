@@ -1,11 +1,11 @@
-package pdef;
+//package PROLOG;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package pdef;
+package pdef;
 
 import java.awt.List;
 import java.util.ArrayList;
@@ -312,11 +312,13 @@ public class interfazwaifu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                        
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {
+        dict_change(answ);
         String[] hair = {answ[0],answ[1],answ[2]};
         String[] eyes = {answ[3],answ[4]};
-        String age = answ[5];
+        String[] age = {answ[5]};
         String[] hairMap,eyesMap;
+        String[] ageMap;
         hairMap = Consulta("hair","X",hair.length, hair);
         System.out.println("hair");
         for (String hairMap1 : hairMap) {
@@ -325,11 +327,14 @@ public class interfazwaifu extends javax.swing.JFrame {
         eyesMap = Consulta("eyes","X",eyes.length, eyes);
         System.out.println("eyes");
         for (String eyesMap1 : eyesMap) {
-            System.out.println(eyesMap1); 
+            System.out.println(eyesMap1);
         }
+        ageMap = Consulta("age","X",age.length,age);
+        System.out.println("age");
+        for(String ageMap1 : ageMap)
+            System.out.println(ageMap1);
     }                                     
     
-   
 
     public void pregunta_resp_list(quest_index v1)
     {
@@ -458,4 +463,3 @@ public class interfazwaifu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration                   
 }
-
