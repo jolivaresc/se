@@ -1,15 +1,13 @@
-//package PROLOG;
+package PROLOG;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pdef;
+//package pdef;
 
-import java.awt.List;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 import javax.swing.*;
 
@@ -174,8 +172,8 @@ public class interfazwaifu extends javax.swing.JFrame {
        String[] resp5 = {"< 14", "from 15 to 17", "from 17 to 22", ">  22"};
        String[] resps = {"comedy", "drama", "suspense", "schoolar", "magical girls", "shonen", "mecha"};
        array_of_questions[0] = new quest_index(0, "What kind of hair do you like the most?", resp1); 
-       array_of_questions[1] = new quest_index(1, "What color do you like the most?", resp2);
-       array_of_questions[2] = new quest_index(2, "what kind of long do you like the most?", resp3); 
+       array_of_questions[1] = new quest_index(1, "what kind of long do you like the most?", resp2);
+       array_of_questions[2] = new quest_index(2, "What color do you like the most?", resp3); 
        array_of_questions[3] = new quest_index(3, "What kind of eyes do you like the most?", resp1); 
        array_of_questions[4] = new quest_index(4, "What color of eyes do you like the most?", resp4); 
        array_of_questions[5] = new quest_index(5, "How old do you prefer your Waifu?", resp5); 
@@ -237,15 +235,7 @@ public class interfazwaifu extends javax.swing.JFrame {
         }
     }                                     
 
-    /**
-     *
-     * @param functionName
-     * @param X
-     * @param preguntas
-     * @param arregloQuery
-     * @return
-     */
-    public String[] Consulta(String functionName,String X, int preguntas, String[] arregloQuery)
+    public void Consulta(String functionName,String X, int preguntas, String[] arregloQuery)
     {
         Compound tmpC;
         Term[] tmpT;
@@ -267,17 +257,11 @@ public class interfazwaifu extends javax.swing.JFrame {
         System.out.println(qtmp.toString());        
         System.out.println(qtmp.hasSolution());
         Map<String,Term> solution;
-        String[] vars= new String[qtmp.allSolutions().length];
-        int i=0;        
         while(qtmp.hasMoreSolutions())
         {
             solution = qtmp.nextSolution();
-            System.out.println(functionName+"Waifu X: " +solution.get(X));
-            vars[i] = solution.get(X).toString();
-            i++;
+            System.out.println("Waifu X: " +solution.get(X));
         }
-        
-        return vars;
         /*
         
         Query consulta = new Query(
@@ -305,36 +289,20 @@ public class interfazwaifu extends javax.swing.JFrame {
         tmp = new Query(tmppp);
         System.out.println(tmp.hasSolution());
         */
-        
     }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     }                                        
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {
-        dict_change(answ);
-        String[] hair = {answ[0],answ[1],answ[2]};
-        String[] eyes = {answ[3],answ[4]};
-        String[] age = {answ[5]};
-        String[] hairMap,eyesMap;
-        String[] ageMap;
-        hairMap = Consulta("hair","X",hair.length, hair);
-        System.out.println("hair");
-        for (String hairMap1 : hairMap) {
-            System.out.println(hairMap1); 
-        }
-        eyesMap = Consulta("eyes","X",eyes.length, eyes);
-        System.out.println("eyes");
-        for (String eyesMap1 : eyesMap) {
-            System.out.println(eyesMap1);
-        }
-        ageMap = Consulta("age","X",age.length,age);
-        System.out.println("age");
-        for(String ageMap1 : ageMap)
-            System.out.println(ageMap1);
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        String[] tmp = {answ[0],answ[1],answ[2]};
+        
+        Consulta("hair","X",tmp.length, tmp);        
+        //System.out.println("asdasd "+Consulta1[0]);
     }                                     
     
+   
 
     public void pregunta_resp_list(quest_index v1)
     {
@@ -346,42 +314,7 @@ public class interfazwaifu extends javax.swing.JFrame {
     private void dict_change(String[] v1) {
         //metodo para cmabiar las palabras por lo que se va a consultar
         //con la base de conocimiento.
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        if("< 14".equals(answ[5])) //cambio las respuestas dadas por variables  ----->
-           answ[5]= "a"; // que el prolog pueda entender para que pueda hacer la inferencia de respuestas.
-        if("from 15 to 17".equals(answ[5])) //VER LA SECCION %EDADES Y %GUSTOS de waifus.pl
-           answ[5]= "b";
-        if("from 17 to 22".equals(answ[5]))
-           answ[5]= "c";
-        if(">  22".equals(answ[5]))
-           answ[5]= "d";
-        if("yes".equals(answ[6]))
-           answ[6]= "love";
-        if("yes".equals(answ[7]))
-           answ[7]= "violent_char";
-        if("yes".equals(answ[8]))
-           answ[8]= "obsesive";
-        if("yes".equals(answ[9]))
-           answ[9]= "sadic";
-        if("yes".equals(answ[10]))
-           answ[10]= "princess_treat";
-        if("yes".equals(answ[11]))
-           answ[11]= "inexpressive";
-        if("yes".equals(answ[12]))
-           answ[12]= "clumsy";
-        if("yes".equals(answ[13]))
-           answ[13]= "two_person";
-        if("yes".equals(answ[14]))
-           answ[14]= "inf_char";
-        if("yes".equals(answ[15]))
-           answ[15]= "cat_char";
-        if("yes".equals(answ[16]))
-           answ[16]= "masc_char";
-        if("yes".equals(answ[17]))
-           answ[17]= "happy";
-        if("yes".equals(answ[18]))
-           answ[19]= "refinade";
-   
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private Object array(Term[] terminos) {
@@ -463,3 +396,4 @@ public class interfazwaifu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration                   
 }
+
