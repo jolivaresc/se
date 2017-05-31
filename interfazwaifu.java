@@ -225,8 +225,7 @@ public class interfazwaifu extends javax.swing.JFrame {
                 }
             else
             {
-                jButton2.setText("Resultado");
-                dict_change(answ);
+                jButton2.setVisible(false);
                 //jList1.setListData(answ);
             }
         }
@@ -312,8 +311,28 @@ public class interfazwaifu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                        
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        String[] hair = {answ[0],answ[1],answ[2]};
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {     
+        int[] countarklocal = dict_change(answ);
+        String[] waifuAns=null;
+        String[] Cons_Simple = {answ[0],answ[1],answ[2],answ[3],answ[4],answ[5]};
+        String[] Arks = {"love","violent_char","obsesive","sadic","princess_treat","inexpressive",
+            "clumsy","two_person","inf_char","cat_char","masc_char","happy","refinade"};
+        
+        if(countarklocal[0]==0)
+            waifuAns =Consulta("one_consult_s","X",Cons_Simple.length,Cons_Simple);
+        
+        jList1.setListData(waifuAns);
+        //for (int i = 0; i < waifuAns.length; i++) {
+           // System.out.println();
+        //}
+        
+        
+        for(int y=1; y<countarklocal[0]; y++)// ciclo para repetir consultas en base al arquetipo
+        {
+            y++;
+         }
+        //waiifuAns = 
+        /*String[] hair = {answ[0],answ[1],answ[2]};
         String[] eyes = {answ[3],answ[4]};
         String age = answ[5];
         String[] hairMap,eyesMap;
@@ -327,7 +346,8 @@ public class interfazwaifu extends javax.swing.JFrame {
         System.out.println("eyes");
         for (String eyesMap1 : eyesMap) {
             System.out.println(eyesMap1); 
-        }
+        }*/
+        
     }                                     
     
    

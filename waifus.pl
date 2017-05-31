@@ -426,6 +426,8 @@ cargar(A):-exist_file(A), consult(A).
 hair_eye_st(X, Y, A, Z, W, S):- hair(S,X,Y,A), eyes(S,Z,W). 
 edad_g(X, Y):- X < 14, Y = loli ; Y = no_loli.
 where_appears(A, X):- appears_on(A, X).
-one_consult(Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Lik, Char):- hair(Char, Htone, Hcolor, Hlong), 
+one_consult(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Lik):- hair(Char, Htone, Hcolor, Hlong), 
 	eyes(Char, Eytone, Eycolor), like(Lik,Arke), ark(Char, Arke), age(Char, Age). 
-			
+
+one_consult_s(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age):- hair(Char, Htone, Hcolor, Hlong), 
+	eyes(Char, Eytone, Eycolor), age(Char, Age). 			
