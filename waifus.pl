@@ -277,8 +277,7 @@ hair(nakamura_yuri, light, purple, long).
 hair(nishikino_maki, dark, red, long).
 hair(ouma_mana, light, pink, long).
 hair(ayuzawa_mizaki, dark, brown, long).
-hair(katsura_kotonoha, dark, black, long).  
-/*y aqui si existe el negro claro xP */
+hair(katsura_kotonoha, dark, black, long).  /*y aqui si existe el negro claro xP */
 hair(sonosaki_shion, light, green, long).
 hair(ryuugu_rena, light, orange, short).
 hair(tokisaki_kurumi, dark, black, long).
@@ -427,3 +426,6 @@ cargar(A):-exist_file(A), consult(A).
 hair_eye_st(X, Y, A, Z, W, S):- hair(S,X,Y,A), eyes(S,Z,W). 
 edad_g(X, Y):- X < 14, Y = loli ; Y = no_loli.
 where_appears(A, X):- appears_on(A, X).
+one_consult(Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Lik, Char):- hair(Char, Htone, Hcolor, Hlong), 
+	eyes(Char, Eytone, Eycolor), like(Lik,Arke), ark(Char, Arke), age(Char, Age). 
+			

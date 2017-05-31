@@ -1,4 +1,4 @@
-package PROLOG;
+package pdef;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,7 +7,9 @@ package PROLOG;
  */
 //package pdef;
 
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 import javax.swing.*;
 
@@ -55,7 +57,7 @@ public class interfazwaifu extends javax.swing.JFrame {
     //la variable de arriba se refiere a la respuesta qu el usuario da.
     //las opciones de las preguntas se mandan a llamar con el metodo
     public static String[] answ = new String[answnum];
-    public static quest_index[] array_of_questions = new quest_index[20]; //arreglo de preguntas que haremos.
+    public static quest_index[] array_of_questions = new quest_index[21]; //arreglo de preguntas que haremos.
     //Query consulta;
     //hubo un problema quee tenia en que no podia usar mi arreglo de preguntas 
     //y tuve que declararlo como un arreglo publico al inicio del programa.
@@ -172,8 +174,8 @@ public class interfazwaifu extends javax.swing.JFrame {
        String[] resp5 = {"< 14", "from 15 to 17", "from 17 to 22", ">  22"};
        String[] resps = {"comedy", "drama", "suspense", "schoolar", "magical girls", "shonen", "mecha"};
        array_of_questions[0] = new quest_index(0, "What kind of hair do you like the most?", resp1); 
-       array_of_questions[1] = new quest_index(1, "what kind of long do you like the most?", resp2);
-       array_of_questions[2] = new quest_index(2, "What color do you like the most?", resp3); 
+       array_of_questions[1] = new quest_index(1, "What color do you like the most?", resp2);
+       array_of_questions[2] = new quest_index(2, "what kind of long do you like the most?", resp3); 
        array_of_questions[3] = new quest_index(3, "What kind of eyes do you like the most?", resp1); 
        array_of_questions[4] = new quest_index(4, "What color of eyes do you like the most?", resp4); 
        array_of_questions[5] = new quest_index(5, "How old do you prefer your Waifu?", resp5); 
@@ -190,7 +192,7 @@ public class interfazwaifu extends javax.swing.JFrame {
        array_of_questions[16] = new quest_index(16, "Do you like the girls with masculine features?", respb);
        array_of_questions[17] = new quest_index(17, "Do you like a energic and happy waifu?", respb);
        array_of_questions[18] = new quest_index(18, "Do you prefer a waifu with a refined and cult touch?", respb);   
-       array_of_questions[19] = new quest_index(19, "What genre of series do you like the most?", resps);
+       array_of_questions[19] = new quest_index(19, "Do you like a waifu that sing and dance?", respb);
        
        //tuve un problema en la linea anterior, es importante recalcar que el constructor funciona
        //con new, de esta forma ya esta creada y declarada la pregunta y sus respuestas.
@@ -235,7 +237,15 @@ public class interfazwaifu extends javax.swing.JFrame {
         }
     }                                     
 
-    public void Consulta(String functionName,String X, int preguntas, String[] arregloQuery)
+    /**
+     *
+     * @param functionName
+     * @param X
+     * @param preguntas
+     * @param arregloQuery
+     * @return
+     */
+    public String[] Consulta(String functionName,String X, int preguntas, String[] arregloQuery)
     {
         Compound tmpC;
         Term[] tmpT;
@@ -257,11 +267,17 @@ public class interfazwaifu extends javax.swing.JFrame {
         System.out.println(qtmp.toString());        
         System.out.println(qtmp.hasSolution());
         Map<String,Term> solution;
+        String[] vars= new String[qtmp.allSolutions().length];
+        int i=0;        
         while(qtmp.hasMoreSolutions())
         {
             solution = qtmp.nextSolution();
-            System.out.println("Waifu X: " +solution.get(X));
+            System.out.println(functionName+"Waifu X: " +solution.get(X));
+            vars[i] = solution.get(X).toString();
+            i++;
         }
+        
+        return vars;
         /*
         
         Query consulta = new Query(
@@ -289,6 +305,7 @@ public class interfazwaifu extends javax.swing.JFrame {
         tmp = new Query(tmppp);
         System.out.println(tmp.hasSolution());
         */
+        
     }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -296,10 +313,21 @@ public class interfazwaifu extends javax.swing.JFrame {
     }                                        
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        String[] tmp = {answ[0],answ[1],answ[2]};
-        
-        Consulta("hair","X",tmp.length, tmp);        
-        //System.out.println("asdasd "+Consulta1[0]);
+        String[] hair = {answ[0],answ[1],answ[2]};
+        String[] eyes = {answ[3],answ[4]};
+        String age = answ[5];
+        String[] hairMap,eyesMap;
+        hairMap = Consulta("hair","X",hair.length, hair);
+        System.out.println("hair");
+        for (String hairMap1 : hairMap) {
+            System.out.println(hairMap1); 
+            jLabel3.setText(hairMap[1]);
+        }
+        eyesMap = Consulta("eyes","X",eyes.length, eyes);
+        System.out.println("eyes");
+        for (String eyesMap1 : eyesMap) {
+            System.out.println(eyesMap1); 
+        }
     }                                     
     
    
@@ -311,14 +339,89 @@ public class interfazwaifu extends javax.swing.JFrame {
         
     }
 
-    private void dict_change(String[] v1) {
+    private int[] dict_change(String[] v1) {
+        int countark[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         //metodo para cmabiar las palabras por lo que se va a consultar
         //con la base de conocimiento.
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private Object array(Term[] terminos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        if("< 14".equals(answ[5])) //cambio las respuestas dadas por variables  ----->
+           answ[5]= "a"; // que el prolog pueda entender para que pueda hacer la inferencia de respuestas.
+        if("from 15 to 17".equals(answ[5])) //VER LA SECCION %EDADES Y %GUSTOS de waifus.pl
+           answ[5]= "b";
+        if("from 17 to 22".equals(answ[5]))
+           answ[5]= "c";
+        if(">  22".equals(answ[5]))
+           answ[5]= "d";
+        if("yes".equals(answ[6]))
+        { 
+           countark[0]++;
+           countark[1]=1; //countark[1] se refiere a la pregunta 6.
+           }
+        if("yes".equals(answ[7]))
+        { 
+            countark[0]++;
+            countark[2]=1;
+        }
+        if("yes".equals(answ[8]))
+        { //answ[8]= "obsesive";
+            countark[0]++;
+            countark[3]=1;
+         }
+        if("yes".equals(answ[9]))
+        {  //answ[9]= "sadic";
+            countark[0]++;
+            countark[4]=1;
+        }
+        if("yes".equals(answ[10]))
+        {  //answ[10]= "princess_treat";
+            countark[0]++;
+            countark[5]=1;
+        }
+        if("yes".equals(answ[11]))
+        {   //answ[11]= "inexpressive";
+            countark[0]++;
+            countark[6]=1;
+        }
+        if("yes".equals(answ[12]))
+        {  
+            countark[0]++;
+            countark[6]=1;
+        }
+        if("yes".equals(answ[13]))
+        {   //answ[13]= "two_person";
+            countark[0]++;
+            countark[7]=1;
+        }
+        if("yes".equals(answ[14]))
+        {   //nsw[14]= "inf_char";
+            countark[0]++;
+            countark[8]=1;
+        }
+        if("yes".equals(answ[15]))
+        {   //answ[15]= "cat_char";
+            countark[0]++;
+            countark[9]=1;
+        }
+        if("yes".equals(answ[16]))
+        {   //answ[16]= "masc_char";
+            countark[0]++;
+            countark[10]=1;
+        }
+        if("yes".equals(answ[17]))
+        {   //answ[17]= "happy";
+            countark[0]++;
+            countark[11]=1;
+        }
+        if("yes".equals(answ[18]))
+        {   //answ[18]= "refinade";
+            countark[0]++;
+            countark[12]=1;
+        }
+        if("yes".equals(answ[19]))
+           answ[19]= "idol";
+        
+   return countark;
     }
     
     public class quest_index
