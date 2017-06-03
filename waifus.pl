@@ -406,6 +406,7 @@ eyes(misuzu_kusakabe, dark, purple).
 like(violent_char, tsundere).    /* le gusta al usuario que su waifu caracter violento*/ 
 like(love,  moe).    /* le gusta al usuario que su waifu tenga un caracter carinioso */ 
 like(love, tsundere).
+like(love, dandere).
 like(inf_char, loli).    /* le gusta al usuario que su waifu tenga caracter infantil*/ 
 like(obsesive, yandere).    /* le gusta al usuario que su waifu sea obsesiva */ 
 like(sadic, yandere).    /* le gusta al usuario que su waifu tenga caracter sadico */ 
@@ -418,6 +419,7 @@ like(refinade, ojou_sama).
 like(inexpressive, kudere).
 like(clumsy, dojikko).
 like(happy, genki_girl).
+like(shy, dandere).
 
 
 /*-----------------------Reglas-------------------*/
