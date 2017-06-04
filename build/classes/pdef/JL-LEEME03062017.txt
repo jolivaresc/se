@@ -1,0 +1,1 @@
+Aqui se cambian los datos de la GUI tanto el .java como el .form para evitar problemas de que se corrompa la GUI
