@@ -5,6 +5,7 @@
  */
 package pdef;
 
+import java.awt.Image;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import org.jpl7.*;
 import pdef.quest_index;
+import pdef.Waifuframe;
 
 
 /**
@@ -32,18 +34,26 @@ public class interfacewaifu extends javax.swing.JFrame {
         //System.out.println( answ[0]);
         //Ocultar botón 'Siguiente'
         jButton2.setVisible(bandera);
-        jButton1.setText("Empezar");
-        jButton3.setText("Resultado");
+        jButton1.setText("Start");
+        jButton3.setText("Result");
         jButton3.setEnabled(bandera);
         jButton4.setText("<");
         jButton5.setText(">");
         jButton4.setEnabled(bandera);
         jButton5.setEnabled(bandera);
         Icon iconu = new ImageIcon(getClass().getResource("media\\ukn.jpg"));
+        //Image ir = (Image) iconu;
+        //Image newr = ir.getScaledInstance(100, 200, 150);
         //ImageIcon iconLogo = new ImageIcon("C:\\Users\\Inori\\Pictures\\mamacita1.jpg");
         // la de arriba es para poner directo de directorios las imagenes.
         //jLabel3.setIcon(new ImageIcon(ImageIO.read()));
         jLabel3.setIcon(iconu);
+        
+        waifuLib initlib = new waifuLib();
+        initlib.setlib(); // metodo para mandar a inicializar los frames de Waifus.
+        
+        //jLabel5.setText(Waifuframe.waifu_Lib[0].waifuName()); funciona bien, esto demuestra
+        //que los frames de waifus estan inicializados en este Formulario.
         
         Query consulta = new Query(
             new Compound(
@@ -70,6 +80,7 @@ public class interfacewaifu extends javax.swing.JFrame {
     //Query consulta;
     //hubo un problema quee tenia en que no podia usar mi arreglo de preguntas 
     //y tuve que declararlo como un arreglo publico al inicio del programa.
+    public int waifucounter = 0; //contador del display.
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,15 +151,15 @@ public class interfacewaifu extends javax.swing.JFrame {
 
         jButton4.setText("jButton4");
         jPanel1.add(jButton4);
-        jButton4.setBounds(310, 110, 73, 23);
+        jButton4.setBounds(300, 110, 73, 23);
 
         jButton5.setText("jButton5");
         jPanel1.add(jButton5);
-        jButton5.setBounds(400, 110, 73, 23);
+        jButton5.setBounds(390, 110, 73, 23);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel1.setText("Pregunta");
+        jLabel1.setFont(new java.awt.Font("Elephant", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 255, 0));
+        jLabel1.setText("Question");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(50, 70, 430, 40);
 
@@ -157,8 +168,9 @@ public class interfacewaifu extends javax.swing.JFrame {
         jLabel2.setBounds(180, 340, 34, 14);
 
         jLabel3.setText("jLabel3");
+        jLabel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 4, true));
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(500, 50, 220, 270);
+        jLabel3.setBounds(490, 40, 250, 300);
 
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4);
@@ -174,7 +186,7 @@ public class interfacewaifu extends javax.swing.JFrame {
 
         jLabel8.setBackground(new java.awt.Color(51, 255, 51));
         jLabel8.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 36)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel8.setForeground(new java.awt.Color(255, 51, 51));
         jLabel8.setText("Find your ideal Waifu.");
         jPanel1.add(jLabel8);
         jLabel8.setBounds(40, 20, 450, 60);
@@ -312,6 +324,8 @@ public class interfacewaifu extends javax.swing.JFrame {
         for (String eyesMap1 : eyesMap) {
             System.out.println(eyesMap1); 
         }*/
+        
+        displayWaifus(waifuAns);
     }//GEN-LAST:event_jButton3MouseClicked
 
     public String[] Consulta(String functionName,String X, int preguntas, String[] arregloQuery)
@@ -523,4 +537,11 @@ public class interfacewaifu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void displayWaifus(String[] waifuAns) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       //int ar = Waifuframe.waifuLib[0].waifuIndex();
+       
+      // jLabel3.setIcon(waifuAns[waifucounter] );
+    }
 }
