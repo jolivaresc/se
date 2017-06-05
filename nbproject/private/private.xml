@@ -1,20 +1,12 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/jose/NetBeansProjects/beta/se/src/pdef/Wframe.java</file>
+            <file>file:/home/jose/NetBeansProjects/beta/se/src/pdef/Pdef.java</file>
+            <file>file:/home/jose/NetBeansProjects/beta/se/src/pdef/waifuLib.java</file>
             <file>file:/home/jose/NetBeansProjects/beta/se/src/pdef/interfacewaifu.java</file>
         </group>
     </open-files>
 </project-private>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
-    </open-files>
-</project-private>
->>>>>>> e0fc55b2c941dcf58a61d15376338cfe0da2241e

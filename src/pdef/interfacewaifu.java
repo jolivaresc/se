@@ -5,12 +5,15 @@
  */
 package pdef;
 
-import java.awt.Image;
-import java.awt.List;
-import java.util.ArrayList;
-import java.util.Collection;
+//import java.awt.Image;
+//import java.awt.List;
+//import java.util.ArrayList;
+import java.util.Arrays;
+//import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
-import javax.imageio.ImageIO;
+import java.util.Set;
+//import javax.imageio.ImageIO;
 import javax.swing.*;
 import org.jpl7.*;
 import pdef.quest_index;
@@ -36,12 +39,14 @@ public class interfacewaifu extends javax.swing.JFrame {
         jButton2.setVisible(bandera);
         jButton1.setText("Start");
         jButton3.setText("Result");
-        jButton3.setEnabled(bandera);
+        jButton3.setEnabled(!bandera);
         jButton4.setText("<");
         jButton5.setText(">");
         jButton4.setEnabled(bandera);
         jButton5.setEnabled(bandera);
-        Icon iconu = new ImageIcon(getClass().getResource("media\\ukn.jpg"));
+        //Icon iconu = new ImageIcon(getClass().getResource("media\\ukn.jpg"));
+        // directorio no encontrado si uso \\ (usando ubuntu)
+        Icon iconu = new ImageIcon(getClass().getResource("media/ukn.jpg"));
         //Image ir = (Image) iconu;
         //Image newr = ir.getScaledInstance(100, 200, 150);
         //ImageIcon iconLogo = new ImageIcon("C:\\Users\\Inori\\Pictures\\mamacita1.jpg");
@@ -55,6 +60,20 @@ public class interfacewaifu extends javax.swing.JFrame {
         //jLabel5.setText(Waifuframe.waifu_Lib[0].waifuName()); funciona bien, esto demuestra
         //que los frames de waifus estan inicializados en este Formulario.
         
+        //TESTING HASHTABLES
+        String[] test = {"a","a","b","c","b","e","c"};        
+        Set<String> waifuSet;
+        waifuSet = new HashSet<>(Arrays.asList(test));
+        String[] waifuArray;
+        waifuArray = (String[]) waifuSet.toArray(new String[waifuSet.size()]);
+        System.out.println(waifuArray.getClass());        
+        for (String s : waifuArray)
+        {
+            System.out.println(s);
+        }  
+        
+        
+        
         Query consulta = new Query(
             new Compound(
                 "consult",
@@ -62,9 +81,12 @@ public class interfacewaifu extends javax.swing.JFrame {
             )            
         );
         if (consulta.hasSolution())
-            System.out.println("TRUE");
+            System.out.println("Connected to Prolog correctly");
         else
-            System.out.println("FALSE");
+        {
+            System.out.println("Conection to Prolog failed");
+            System.exit(0);
+        }
     }
     
     //public static String pre1 = "¿Como prefieres el tipo de cabello?";
@@ -290,6 +312,9 @@ public class interfacewaifu extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         int[] countarklocal = dict_change(answ);
+        
+        
+        //String[] test = {"a","a","b","c","b","e","c"};        
         String[] waifuAns=null;
         String[] Cons_Simple = {answ[0],answ[1],answ[2],answ[3],answ[4],answ[5]};
         String[] Arks = {"love","violent_char","obsesive","sadic","princess_treat","inexpressive",
@@ -297,11 +322,25 @@ public class interfacewaifu extends javax.swing.JFrame {
         
         if(countarklocal[0]==0)
             waifuAns =Consulta("one_consult_s","X",Cons_Simple.length,Cons_Simple);
+        /*
+        Set<String> waifuSet;
+        waifuSet = new HashSet<>(Arrays.asList(test));
+        String[] waifuArreglo = (String[]) waifuSet.toArray();
+        for (String waifuArreglo1 : waifuArreglo) {
+            System.out.println(waifuArreglo1);
+            for (String waifuString: waifuSet)
+            {
+            System.out.println(waifuString);
+            }
+        }*/
         
         jList1.setListData(waifuAns);
         //for (int i = 0; i < waifuAns.length; i++) {
            // System.out.println();
         //}
+        
+        // Eliminando
+        
         
         
         for(int y=1; y<countarklocal[0]; y++)// ciclo para repetir consultas en base al arquetipo
