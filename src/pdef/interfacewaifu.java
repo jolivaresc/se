@@ -60,7 +60,7 @@ public class interfacewaifu extends javax.swing.JFrame {
         //jLabel5.setText(Waifuframe.waifu_Lib[0].waifuName()); funciona bien, esto demuestra
         //que los frames de waifus estan inicializados en este Formulario.
         
-        //TESTING HASHTABLES
+        /*TESTING HASHTABLES
         String[] test = {"a","a","b","c","b","e","c"};        
         Set<String> waifuSet;
         waifuSet = new HashSet<>(Arrays.asList(test));
@@ -70,7 +70,7 @@ public class interfacewaifu extends javax.swing.JFrame {
         for (String s : waifuArray)
         {
             System.out.println(s);
-        }  
+        }*/
         
         
         
@@ -322,17 +322,18 @@ public class interfacewaifu extends javax.swing.JFrame {
         
         if(countarklocal[0]==0)
             waifuAns =Consulta("one_consult_s","X",Cons_Simple.length,Cons_Simple);
-        /*
+        
+        //Hashtable para eliminar waifus repetidas
+        System.out.println("HASHTABLE RESULT:");
         Set<String> waifuSet;
-        waifuSet = new HashSet<>(Arrays.asList(test));
-        String[] waifuArreglo = (String[]) waifuSet.toArray();
-        for (String waifuArreglo1 : waifuArreglo) {
-            System.out.println(waifuArreglo1);
-            for (String waifuString: waifuSet)
-            {
-            System.out.println(waifuString);
-            }
-        }*/
+        waifuSet = new HashSet<>(Arrays.asList(waifuAns));
+        String[] waifuArray;
+        waifuArray = (String[]) waifuSet.toArray(new String[waifuSet.size()]);
+        //System.out.println(waifuArray.getClass());
+        for (String s : waifuArray)
+        {
+            System.out.println(s);
+        }
         
         jList1.setListData(waifuAns);
         //for (int i = 0; i < waifuAns.length; i++) {
