@@ -17,11 +17,11 @@ class waifuLib {
     
     public void setlib()
     {
-        //Icon iakiyama_mio = new ImageIcon(getClass().getResource("media\\akiyama_mio.jpg"));
-        Icon iakiyama_mio = new ImageIcon(getClass().getResource("media/akiyama_mio.jpg"));
+        Icon iakiyama_mio = new ImageIcon(getClass().getResource("media\\akiyama_mio.jpg"));
+        //Icon iakiyama_mio = new ImageIcon(getClass().getResource("media/akiyama_mio.jpg"));
         Waifuframe.waifu_Lib[0] = new Waifuframe(0,"akiyama_mio", "Mio Akiyama", "K-on!", iakiyama_mio);
-        //Icon ihatsune_miku = new ImageIcon(getClass().getResource("media\\hatsune_miku.jpg"));
-        Icon ihatsune_miku = new ImageIcon(getClass().getResource("media/hatsune_miku.jpg"));
+        Icon ihatsune_miku = new ImageIcon(getClass().getResource("media\\hatsune_miku.jpg"));
+        //Icon ihatsune_miku = new ImageIcon(getClass().getResource("media/hatsune_miku.jpg"));
         Waifuframe.waifu_Lib[1] =  new Waifuframe(1, "hatsune_miku", "Miku Hatsunea", "Vocaloid", ihatsune_miku);
     
     }

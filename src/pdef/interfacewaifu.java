@@ -8,12 +8,16 @@ package pdef;
 //import java.awt.Image;
 //import java.awt.List;
 //import java.util.ArrayList;
-import java.util.Arrays;
 //import java.util.Collection;
+//import javax.imageio.ImageIO;
+import java.awt.List;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-//import javax.imageio.ImageIO;
 import javax.swing.*;
 import org.jpl7.*;
 import pdef.quest_index;
@@ -30,9 +34,15 @@ public class interfacewaifu extends javax.swing.JFrame {
      * Creates new form interfacewaifu
      */
     public boolean bandera = false;
+    // contador waifu arquetipos
+    int waifuark = 6;
+    ArrayList<String> ListArks = new ArrayList<>();  
     public interfacewaifu() {
         initComponents();
         String[] init = new String[0];
+        
+        
+        
         jList1.setListData(init); //comenzar con la lista limpia.
         //System.out.println( answ[0]);
         //Ocultar botón 'Siguiente'
@@ -44,9 +54,10 @@ public class interfacewaifu extends javax.swing.JFrame {
         jButton5.setText(">");
         jButton4.setEnabled(bandera);
         jButton5.setEnabled(bandera);
-        //Icon iconu = new ImageIcon(getClass().getResource("media\\ukn.jpg"));
+        Icon iconu = new ImageIcon(getClass().getResource("media\\ukn.jpg"));
         // directorio no encontrado si uso \\ (usando ubuntu)
-        Icon iconu = new ImageIcon(getClass().getResource("media/ukn.jpg"));
+        
+        //Icon iconu = new ImageIcon(getClass().getResource("media/ukn.jpg"));
         //Image ir = (Image) iconu;
         //Image newr = ir.getScaledInstance(100, 200, 150);
         //ImageIcon iconLogo = new ImageIcon("C:\\Users\\Inori\\Pictures\\mamacita1.jpg");
@@ -71,8 +82,6 @@ public class interfacewaifu extends javax.swing.JFrame {
         {
             System.out.println(s);
         }*/
-        
-        
         
         Query consulta = new Query(
             new Compound(
@@ -253,8 +262,8 @@ public class interfacewaifu extends javax.swing.JFrame {
        array_of_questions[3] = new quest_index(3, "What kind of eyes do you like the most?", resp1); 
        array_of_questions[4] = new quest_index(4, "What color of eyes do you like the most?", resp4); 
        array_of_questions[5] = new quest_index(5, "How old do you prefer your Waifu?", resp5); 
-       array_of_questions[6] = new quest_index(6, "Do you like a lovely and sweet girl?", respb); 
-       array_of_questions[7] = new quest_index(7, "Do you like girls with violent personality?", respb);
+       array_of_questions[6] = new quest_index(6, "Do you like a lovely and sweet girl?", respb); //moe
+       array_of_questions[7] = new quest_index(7, "Do you like girls with violent personality?", respb);//tsundere
        array_of_questions[8] = new quest_index(8, "Do you like the obsesive girls?", respb);
        array_of_questions[9] = new quest_index(9, "Do you like the girls with assasin impulses?", respb);
        array_of_questions[10] = new quest_index(10, "Do you like to treatyour waifu like a princess?", respb);
@@ -311,60 +320,41 @@ public class interfacewaifu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        int[] countarklocal = dict_change(answ);
+        int[] countarklocal = dict_change(answ);       
         
-        
-        //String[] test = {"a","a","b","c","b","e","c"};        
-        String[] waifuAns=null;
+        String[] waifuAns = null;
         String[] Cons_Simple = {answ[0],answ[1],answ[2],answ[3],answ[4],answ[5]};
-        String[] Arks = {"love","violent_char","obsesive","sadic","princess_treat","inexpressive",
-            "clumsy","two_person","inf_char","cat_char","masc_char","happy","refinade"};
+        System.out.println("ListArks");
+        for (int i=0;i<ListArks.size();i++) {
+            System.out.println(ListArks.get(i));
+        }
+        
+        String[] ArrayArks;
+        ArrayArks = (String[]) ListArks.toArray(new String[ListArks.size()]);
+        System.out.println("Array arks");
+        for (String ArrayArk : ArrayArks) {
+            System.out.println(ArrayArk);
+        }
         
         if(countarklocal[0]==0)
+        {
             waifuAns =Consulta("one_consult_s","X",Cons_Simple.length,Cons_Simple);
+            System.out.println("HASHTABLE RESULT:");
+            Set<String> waifuSet;
+            waifuSet = new HashSet<>(Arrays.asList(waifuAns));
+            String[] waifuArray;
+            waifuArray = (String[]) waifuSet.toArray(new String[waifuSet.size()]);
+            //System.out.println(waifuArray.getClass());
+            for (String s : waifuArray)
+                System.out.println(s);
+            jList1.setListData(waifuArray);
+        }
         
         //Hashtable para eliminar waifus repetidas
-        System.out.println("HASHTABLE RESULT:");
-        Set<String> waifuSet;
-        waifuSet = new HashSet<>(Arrays.asList(waifuAns));
-        String[] waifuArray;
-        waifuArray = (String[]) waifuSet.toArray(new String[waifuSet.size()]);
-        //System.out.println(waifuArray.getClass());
-        for (String s : waifuArray)
-        {
-            System.out.println(s);
-        }
-        
-        jList1.setListData(waifuAns);
-        //for (int i = 0; i < waifuAns.length; i++) {
-           // System.out.println();
-        //}
-        
-        // Eliminando
         
         
         
-        for(int y=1; y<countarklocal[0]; y++)// ciclo para repetir consultas en base al arquetipo
-        {
-            y++;
-         }
-        //waiifuAns = 
-        /*String[] hair = {answ[0],answ[1],answ[2]};
-        String[] eyes = {answ[3],answ[4]};
-        String age = answ[5];
-        String[] hairMap,eyesMap;
-        hairMap = Consulta("hair","X",hair.length, hair);
-        System.out.println("hair");
-        for (String hairMap1 : hairMap) {
-            System.out.println(hairMap1); 
-            jLabel3.setText(hairMap[1]);
-        }
-        eyesMap = Consulta("eyes","X",eyes.length, eyes);
-        System.out.println("eyes");
-        for (String eyesMap1 : eyesMap) {
-            System.out.println(eyesMap1); 
-        }*/
-        
+                
         displayWaifus(waifuAns);
     }//GEN-LAST:event_jButton3MouseClicked
 
@@ -401,34 +391,6 @@ public class interfacewaifu extends javax.swing.JFrame {
         }
         
         return vars;
-        /*
-        
-        Query consulta = new Query(
-            new Compound(
-                "consult",
-                new Term [] {new Atom("waifus.pl")}
-            )            
-        );
-        if (consulta.hasSolution())
-            System.out.println("TRUE");
-        else
-            System.out.println("FALSE");
-        
-        String cons = functionName+"("+X+",";
-        for(int k=0;k<preguntas;k++)
-        {
-            cons = cons+arregloQuery[k];
-            if (k!=preguntas-1)
-                cons = cons+",";
-        }
-        cons = cons+").";
-        String tmppp = "hair(X,light,pink,long).";
-        System.out.println(cons);
-        Query tmp;
-        tmp = new Query(tmppp);
-        System.out.println(tmp.hasSolution());
-        */
-        
     }
     
     
@@ -454,73 +416,88 @@ public class interfacewaifu extends javax.swing.JFrame {
         if(">  22".equals(answ[5]))
            answ[5]= "d";
         if("yes".equals(answ[6]))
-        { 
-           countark[0]++;
-           countark[1]=1; //countark[1] se refiere a la pregunta 6.
-           }
+        { //moe
+            ListArks.add("moe");
+            countark[0]++;
+            countark[1]=1; //countark[1] se refiere a la pregunta 6.
+        }
         if("yes".equals(answ[7]))
-        { 
+        { //tsundere
+            ListArks.add("tsundare");
             countark[0]++;
             countark[2]=1;
         }
         if("yes".equals(answ[8]))
         { //answ[8]= "obsesive";
+            ListArks.add("obsesive");
             countark[0]++;
             countark[3]=1;
          }
         if("yes".equals(answ[9]))
-        {  //answ[9]= "sadic";
+        {   //answ[9]= "sadic";
+            ListArks.add("sadic");
             countark[0]++;
             countark[4]=1;
         }
         if("yes".equals(answ[10]))
         {  //answ[10]= "princess_treat";
+            ListArks.add("princess_treat");
             countark[0]++;
             countark[5]=1;
         }
         if("yes".equals(answ[11]))
         {   //answ[11]= "inexpressive";
+            ListArks.add("inexpressive");
             countark[0]++;
             countark[6]=1;
         }
         if("yes".equals(answ[12]))
-        {  
+        {  //dojikko
+            ListArks.add("dojikko");
             countark[0]++;
             countark[6]=1;
         }
         if("yes".equals(answ[13]))
         {   //answ[13]= "two_person";
+            ListArks.add("two_person");
             countark[0]++;
             countark[7]=1;
         }
         if("yes".equals(answ[14]))
         {   //nsw[14]= "inf_char";
+            ListArks.add("inf_char");
             countark[0]++;
             countark[8]=1;
         }
         if("yes".equals(answ[15]))
         {   //answ[15]= "cat_char";
+            ListArks.add("cat_char");
             countark[0]++;
             countark[9]=1;
         }
         if("yes".equals(answ[16]))
         {   //answ[16]= "masc_char";
+            ListArks.add("masc_char");
             countark[0]++;
             countark[10]=1;
         }
         if("yes".equals(answ[17]))
         {   //answ[17]= "happy";
+            ListArks.add("happy");
             countark[0]++;
             countark[11]=1;
         }
         if("yes".equals(answ[18]))
         {   //answ[18]= "refinade";
+            ListArks.add("refinade");
             countark[0]++;
             countark[12]=1;
         }
         if("yes".equals(answ[19]))
-           answ[19]= "idol";
-        
+        {
+            //ListArks.add("idol");
+            answ[19]= "idol";
+        }
    return countark;
     }
     
