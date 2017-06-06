@@ -93,9 +93,17 @@ ark(kido_saori, ojou_sama).
 ark(izumi_reina, ojou_sama).
 ark(izumi_reina, moe).
 ark(misuzu_kusakabe, kudere).
+ark(hiiragi_tsukasa, loli).
+ark(takara_miyuki, dojikko).
+ark(hiiragi_kagami, tsundere).
+ark(izumi_kanata, genki_girl).
+ark(tojo_nozomi, moe).
+ark(gokou_ruri, nekogirl).
+ark(hoshizora_rin, moe).
+ark(hoshizora_rin, nekogirl).
 
 /*---- edades-----------*/
-/* a(<13), b(14-17), c(17-22), d(23>)*/
+/* a(<13), b(14-17), c(18-22), d(23>)*/
 
 age(hatsune_miku, b).
 age(megurine_luka, c).
@@ -107,7 +115,7 @@ age(aisaka_taiga, b).
 age(kirisaki_chitoge, b).
 age(langley_asuka, b).
 age(hino_rei, b).
-age(konjiki_no_yami, c).
+age(konjiki_no_yami, b).
 age(yuuki_asuna, b).
 age(francoise_louise, b).
 age(nakamura_yuri, b).
@@ -169,6 +177,12 @@ age(hanayo_koizumi, b).
 age(kido_saori, b).
 age(izumi_reina, b).
 age(misuzu_kusakabe, c).
+age(hiiragi_tsukasa, b).
+age(takara_miyuki, b).
+age(hiiragi_kagami, b).
+age(izumi_kanata, b).
+age(tojo_nozomi, c).
+age(hoshizora_rin, b).
 
 /*---- es idol?-----------*/
 
@@ -182,6 +196,8 @@ idol(hirasawa_yui).
 idol(honoka_kousaka).
 idol(minami_kotori).
 idol(hanayo_koizumi).
+idol(tojo_nozomi).
+idol(hoshizora_rin).
 
 /*-------donde sale--------------------*/
 
@@ -257,6 +273,12 @@ appears_on(hanayo_koizumi, love_live).
 appears_on(kido_saori, saint_seiya).
 appears_on(izumi_reina, phantom_world).
 appears_on(misuzu_kusakabe, eleven_eyes).
+appears_on(hiiragi_tsukasa, lucky_star).
+appears_on(takara_miyuki, lucky_star).
+appears_on(hiiragi_kagami, lucky_star).
+appears_on(izumi_kanata, lucky_star).
+appears_on(tojo_nozomi, love_live).
+appears_on(hoshizora_rin, love_live).
 
 /*---------------Color de Cabello--------------------*/
 
@@ -329,6 +351,12 @@ hair(hanayo_koizumi, dark, blonde, short).
 hair(kido_saori, light, purple, long).
 hair(izumi_reina, dark, brown, long).
 hair(misuzu_kusakabe, dark, red, long).
+hair(hiiragi_tsukasa, light, purple, short).
+hair(takara_miyuki, light, pink, long).
+hair(hiiragi_kagami, light, purple, long).
+hair(izumi_kanata, dark, blue, long).
+hair(tojo_nozomi, dark, purple, long).
+hair(hoshizora_rin, light, orange, short).
 
 /*---------------------Tipo de ojos------------------*/
 
@@ -369,7 +397,7 @@ eyes(shirayuki_mizore, light, blue).
 eyes(bristol_lilith, light, blue).
 eyes(yoshino, light, blue).
 eyes(shiro, light, (yellow, red)).
-eyes(asahina_mikuru, ligth, brown).
+eyes(asahina_mikuru, light, brown).
 eyes(yazawa_nico, light, red).
 eyes(aragaki_ayase, dark, purple).
 eyes(sonoda_umi, light, brown).
@@ -401,6 +429,12 @@ eyes(hanayo_koizumi, light, pink).
 eyes(kido_saori, light, blue).
 eyes(izumi_reina, light, blue).
 eyes(misuzu_kusakabe, dark, purple).
+eyes(hiiragi_tsukasa, light, blue).
+eyes(takara_miyuki, light, purple).
+eyes(hiiragi_kagami, light, blue).
+eyes(izumi_kanata, light, green).
+eyes(tojo_nozomi, light, blue).
+eyes(hoshizora_rin, light, yellow).
 
 /*--------------------reglas de gustos-----------------*/
 like(violent_char, tsundere).    /* le gusta al usuario que su waifu caracter violento*/ 
@@ -432,4 +466,41 @@ one_consult(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Lik):- hair(Char, 
 	eyes(Char, Eytone, Eycolor), like(Lik,Arke), ark(Char, Arke), age(Char, Age). 
 
 one_consult_s(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age):- hair(Char, Htone, Hcolor, Hlong), 
-	eyes(Char, Eytone, Eycolor), age(Char, Age). 			
+	eyes(Char, Eytone, Eycolor), age(Char, Age). 
+
+one_consult_1(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like):- hair(Char, Htone, Hcolor, Hlong), 
+	eyes(Char, Eytone, Eycolor), like(Like, Arke), ark(Char, Arke), age(Char, Age). 
+
+one_consult_2(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like1, Like2):- one_consult_1(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age
+, Like1) ; one_consult_1(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like2).
+			
+one_consult_3(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like1, Like2, Like3):- one_consult_2(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, 
+Age, Like1, Like2) ; one_consult_1(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like3).
+
+one_consult_4(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like1, Like2, Like3, Like4):- one_consult_2(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, 
+Age, Like1, Like2) ; one_consult_2(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like3, Like4).
+
+one_consult_5(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like1, Like2, Like3, Like4, Like5):- one_consult_4(Char, Htone, Hcolor, 
+Hlong, Eytone, Eycolor, Age, Like1, Like2, Like3, Like4) ; one_consult_1(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like5).
+
+one_consult_6(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like1, Like2, Like3, Like4, Like5, Like6):- one_consult_5(Char, Htone, Hcolor, 
+Hlong, Eytone, Eycolor, Age, Like1, Like2, Like3, Like4, Like5) ; one_consult_1(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Like6).
+
+
+fn( 0 , X , [X|_]  ) .
+fn( N , X , [_|Xs] ) :-
+  N > 0 ,
+  N1 is N-1 ,
+  fn( N1 , X , Xs ).
+
+
+
+one_consult_def(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, [Li|Lf]):- 
+one_consult_1(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Li); one_consult_def(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Lf). 
+idol_consult(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, [Li|Lf]):- 
+one_consult_def(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, [Li|Lf]), idol(Char). 
+
+prueba_conv(Char, [Li|Lf]):- appears_on(Char, Li) ; prueba_conv(Char, Lf).
+
+
+
