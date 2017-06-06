@@ -494,13 +494,19 @@ fn( N , X , [_|Xs] ) :-
   fn( N1 , X , Xs ).
 
 
-
 one_consult_def(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, [Li|Lf]):- 
 one_consult_1(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Li); one_consult_def(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, Lf). 
+
 idol_consult(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, [Li|Lf]):- 
 one_consult_def(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, [Li|Lf]), idol(Char). 
 
 prueba_conv(Char, [Li|Lf]):- appears_on(Char, Li) ; prueba_conv(Char, Lf).
+
+one_consult_aux(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, List):- atomic_list_concat(X, -, List), 
+one_consult_def(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, X).
+
+idol_consult_aux(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, List):- atomic_list_concat(X, -, List), 
+idol_consult(Char, Htone, Hcolor, Hlong, Eytone, Eycolor, Age, X).
 
 
 
