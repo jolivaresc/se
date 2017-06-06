@@ -5,23 +5,20 @@
  */
 package pdef;
 
-//import java.awt.Image;
-//import java.awt.List;
-//import java.util.ArrayList;
-//import java.util.Collection;
-//import javax.imageio.ImageIO;
+import java.awt.Image;
 import java.awt.List;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import org.jpl7.*;
 import pdef.quest_index;
 import pdef.Waifuframe;
+import static pdef.Waifuframe.waifu_Lib;
 
 
 /**
@@ -33,31 +30,28 @@ public class interfacewaifu extends javax.swing.JFrame {
     /**
      * Creates new form interfacewaifu
      */
-    public boolean bandera = false;
-    // contador waifu arquetipos
     int waifuark = 6;
-    ArrayList<String> ListArks = new ArrayList<>();  
+    ArrayList<String> ListArks = new ArrayList<>();
+    public boolean bandera = false;
     public interfacewaifu() {
         initComponents();
         String[] init = new String[0];
-        
-        
-        
         jList1.setListData(init); //comenzar con la lista limpia.
         //System.out.println( answ[0]);
         //Ocultar botón 'Siguiente'
         jButton2.setVisible(bandera);
         jButton1.setText("Start");
         jButton3.setText("Result");
-        jButton3.setEnabled(!bandera);
+        jButton3.setEnabled(bandera);
         jButton4.setText("<");
         jButton5.setText(">");
         jButton4.setEnabled(bandera);
         jButton5.setEnabled(bandera);
+        jLabel4.setText("");
+        jLabel6.setText("");
+        jLabel5.setText("");
+        jLabel2.setText("");
         Icon iconu = new ImageIcon(getClass().getResource("media\\ukn.jpg"));
-        // directorio no encontrado si uso \\ (usando ubuntu)
-        
-        //Icon iconu = new ImageIcon(getClass().getResource("media/ukn.jpg"));
         //Image ir = (Image) iconu;
         //Image newr = ir.getScaledInstance(100, 200, 150);
         //ImageIcon iconLogo = new ImageIcon("C:\\Users\\Inori\\Pictures\\mamacita1.jpg");
@@ -71,18 +65,6 @@ public class interfacewaifu extends javax.swing.JFrame {
         //jLabel5.setText(Waifuframe.waifu_Lib[0].waifuName()); funciona bien, esto demuestra
         //que los frames de waifus estan inicializados en este Formulario.
         
-        /*TESTING HASHTABLES
-        String[] test = {"a","a","b","c","b","e","c"};        
-        Set<String> waifuSet;
-        waifuSet = new HashSet<>(Arrays.asList(test));
-        String[] waifuArray;
-        waifuArray = (String[]) waifuSet.toArray(new String[waifuSet.size()]);
-        System.out.println(waifuArray.getClass());        
-        for (String s : waifuArray)
-        {
-            System.out.println(s);
-        }*/
-        
         Query consulta = new Query(
             new Compound(
                 "consult",
@@ -90,12 +72,9 @@ public class interfacewaifu extends javax.swing.JFrame {
             )            
         );
         if (consulta.hasSolution())
-            System.out.println("Connected to Prolog correctly");
+            System.out.println("TRUE");
         else
-        {
-            System.out.println("Conection to Prolog failed");
-            System.exit(0);
-        }
+            System.out.println("FALSE");
     }
     
     //public static String pre1 = "¿Como prefieres el tipo de cabello?";
@@ -112,6 +91,8 @@ public class interfacewaifu extends javax.swing.JFrame {
     //hubo un problema quee tenia en que no podia usar mi arreglo de preguntas 
     //y tuve que declararlo como un arreglo publico al inicio del programa.
     public int waifucounter = 0; //contador del display.
+    public int findedwaifuindex = 0; //indice de waifu encontrada.
+    public String[] Waifu_ans_public; //lista de waifus encontradas publicas.
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,12 +111,13 @@ public class interfacewaifu extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -151,7 +133,7 @@ public class interfacewaifu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(50, 110, 220, 170);
+        jScrollPane1.setBounds(50, 120, 220, 170);
 
         jButton1.setText("jButton1");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,7 +142,7 @@ public class interfacewaifu extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(60, 290, 100, 23);
+        jButton1.setBounds(50, 300, 100, 23);
 
         jButton2.setText("jButton2");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -169,7 +151,7 @@ public class interfacewaifu extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(170, 290, 100, 23);
+        jButton2.setBounds(170, 300, 100, 23);
 
         jButton3.setText("jButton3");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -178,49 +160,88 @@ public class interfacewaifu extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(60, 320, 100, 23);
+        jButton3.setBounds(50, 330, 100, 23);
 
         jButton4.setText("jButton4");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton4);
-        jButton4.setBounds(300, 110, 73, 23);
+        jButton4.setBounds(310, 130, 75, 23);
 
         jButton5.setText("jButton5");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton5);
-        jButton5.setBounds(390, 110, 73, 23);
+        jButton5.setBounds(390, 130, 75, 23);
 
+        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 153));
         jLabel1.setFont(new java.awt.Font("Elephant", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 255, 0));
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Question");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(50, 70, 430, 40);
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(10, 70, 470, 40);
+
+        jLabel2.setForeground(new java.awt.Color(153, 0, 0));
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(180, 340, 34, 14);
+        jLabel2.setBounds(170, 330, 90, 20);
 
         jLabel3.setText("jLabel3");
         jLabel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 4, true));
         jPanel1.add(jLabel3);
         jLabel3.setBounds(490, 40, 250, 300);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 255, 51));
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(440, 300, 34, 14);
+        jLabel4.setBounds(310, 190, 150, 20);
 
-        jLabel5.setText("jLabel5");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(310, 150, 170, 170);
-
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 255, 51));
         jLabel6.setText("jLabel6");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(390, 340, 34, 14);
+        jLabel6.setBounds(310, 230, 150, 10);
+
+        jLabel5.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel5.setForeground(new java.awt.Color(51, 255, 51));
+        jLabel5.setText("jLabel5");
+        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51), 4));
+        jLabel5.setOpaque(true);
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(300, 160, 170, 170);
 
         jLabel8.setBackground(new java.awt.Color(51, 255, 51));
         jLabel8.setFont(new java.awt.Font("Franklin Gothic Heavy", 0, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 51, 51));
         jLabel8.setText("Find your ideal Waifu.");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(40, 20, 450, 60);
+        jLabel8.setBounds(40, 10, 450, 60);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pdef/media/wallpaper.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
@@ -244,8 +265,17 @@ public class interfacewaifu extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         //boton inicio.
        bandera = true;
+       waifucounter = 0; //contador del display.
+       findedwaifuindex = 0; //indice de waifu encontrada.
+       String[] Waifu_ans_public;
        jButton2.setVisible(bandera);
-       jButton2.setText("Siguiente");
+       jButton2.setText("Next");
+       jButton3.setEnabled(false);
+       jLabel4.setText("");
+       jLabel6.setText("");
+       Icon iconu = new ImageIcon(getClass().getResource("media\\ukn.jpg"));
+       jLabel3.setIcon(iconu);
+       //jButton3.setVisible(false);
        qcounter = 0; // este contador nos dira en que pregunta vamos, si empezamos vuelve a cero.
        //hay que limpiar el arreglo donde vayamos guardando las respuestas. 
        //quest_index[] array_of_questions = new quest_index[10]; //arreglo de preguntas que haremos.
@@ -254,7 +284,7 @@ public class interfacewaifu extends javax.swing.JFrame {
        String[] resp3 = {"long", "short"};
        String[] resp4 = {"red", "orange", "yellow", "green", "blue", "purple", "brown", "black", "gray", "pink", "two colors"};
        String[] respb = {"yes", "no"};
-       String[] resp5 = {"< 14", "from 15 to 17", "from 17 to 22", ">  22"};
+       String[] resp5 = {"< 14", "from 15 to 17", "from 18 to 22", ">  22"};
        String[] resps = {"comedy", "drama", "suspense", "schoolar", "magical girls", "shonen", "mecha"};
        array_of_questions[0] = new quest_index(0, "What kind of hair do you like the most?", resp1); 
        array_of_questions[1] = new quest_index(1, "What color of hair do you like the most?", resp2);
@@ -262,8 +292,8 @@ public class interfacewaifu extends javax.swing.JFrame {
        array_of_questions[3] = new quest_index(3, "What kind of eyes do you like the most?", resp1); 
        array_of_questions[4] = new quest_index(4, "What color of eyes do you like the most?", resp4); 
        array_of_questions[5] = new quest_index(5, "How old do you prefer your Waifu?", resp5); 
-       array_of_questions[6] = new quest_index(6, "Do you like a lovely and sweet girl?", respb); //moe
-       array_of_questions[7] = new quest_index(7, "Do you like girls with violent personality?", respb);//tsundere
+       array_of_questions[6] = new quest_index(6, "Do you like a lovely and sweet girl?", respb); 
+       array_of_questions[7] = new quest_index(7, "Do you like girls with violent personality?", respb);
        array_of_questions[8] = new quest_index(8, "Do you like the obsesive girls?", respb);
        array_of_questions[9] = new quest_index(9, "Do you like the girls with assasin impulses?", respb);
        array_of_questions[10] = new quest_index(10, "Do you like to treatyour waifu like a princess?", respb);
@@ -283,18 +313,19 @@ public class interfacewaifu extends javax.swing.JFrame {
        //respuesta1[0]="dark";
        //respuesta1[1]="light"; esta parte tambien se mejoro con el constructor.
        pregunta_resp_list(array_of_questions[0]);
+       //jLabel3.setIcon(waifu_Lib[3].waifuImage()); //prueba de despliegue de imagenes
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         //int ind = jList1.getLeadSelectionIndex();
         if(bandera)
         {
-            if(qcounter < 20)
+            if(qcounter < 19)
                 {
                     if(!jList1.isSelectionEmpty())
                     {
                         String selection = jList1.getSelectedValue();
-                        jLabel2.setText(selection);
+                        //jLabel2.setText(selection);
                         answ[qcounter] = selection; //guardar en la respuesta en nuestro arreglo de respuestas dadas.
                         System.out.println(answ[qcounter]);
                         qcounter = qcounter + 1;
@@ -303,12 +334,16 @@ public class interfacewaifu extends javax.swing.JFrame {
                     else
                     {
                         String msg = "Select one option!";
-                        jLabel4.setText(msg);
+                        jLabel2.setText(msg);
                     }
                 }
             else
             {
                 jButton2.setVisible(false);
+                jButton3.setEnabled(true);
+                jLabel1.setText("Your ideal Waifu would can be: ");
+                String[] init = new String[0];
+                jList1.setListData(init);
                 //jList1.setListData(answ);
             }
         }
@@ -320,43 +355,122 @@ public class interfacewaifu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        int[] countarklocal = dict_change(answ);       
-        
+        int[] countarklocal = dict_change(answ);
         String[] waifuAns = null;
         String[] Cons_Simple = {answ[0],answ[1],answ[2],answ[3],answ[4],answ[5]};
-        System.out.println("ListArks");
-        for (int i=0;i<ListArks.size();i++) {
-            System.out.println(ListArks.get(i));
-        }
+        String[] Arks = {"love","violent_char","obsesive","sadic","princess_treat","inexpressive",
+            "clumsy","two_person","inf_char","cat_char","masc_char","happy","refinade"};
         
-        String[] ArrayArks;
-        ArrayArks = (String[]) ListArks.toArray(new String[ListArks.size()]);
-        System.out.println("Array arks");
-        for (String ArrayArk : ArrayArks) {
-            System.out.println(ArrayArk);
-        }
+        /*System.out.println("ListArks");
+        for (int i=0;i<ListArks.size();i++) {
+        System.out.println(ListArks.get(i));
+        } //los esta cachando bien XDD*/
         
         if(countarklocal[0]==0)
         {
-            waifuAns =Consulta("one_consult_s","X",Cons_Simple.length,Cons_Simple);
-            System.out.println("HASHTABLE RESULT:");
-            Set<String> waifuSet;
-            waifuSet = new HashSet<>(Arrays.asList(waifuAns));
-            String[] waifuArray;
-            waifuArray = (String[]) waifuSet.toArray(new String[waifuSet.size()]);
-            //System.out.println(waifuArray.getClass());
-            for (String s : waifuArray)
-                System.out.println(s);
-            jList1.setListData(waifuArray);
+            waifuAns =Consulta("one_consult_s","X", Cons_Simple.length, Cons_Simple);
+            String[] waifu_def_ans = remove_repeat_waifu(waifuAns);
+            /*for (String s : waifu_def_ans)
+            System.out.println(s);*/
+            Waifu_ans_public = waifu_def_ans;
+        }
+        else if(answ[19].equals("idol"))
+                {
+                   //consulta idol 
+                   String[] ArrayArks;
+                   ArrayArks = (String[]) ListArks.toArray(new String[ListArks.size()]);
+                   String list_ark_concat = create_arklist(ArrayArks);
+                   //System.out.println(list_ark_concat);
+                   String[] Cons_idol = {answ[0], answ[1], answ[2], answ[3], answ[4], answ[5], list_ark_concat};
+                   waifuAns =Consulta("idol_consult_aux","X", Cons_idol.length, Cons_idol);
+                   String[] waifu_def_ans = remove_repeat_waifu(waifuAns);
+                   Waifu_ans_public = waifu_def_ans;
+                }
+        else
+        {
+            //consulta comun definitiva
+            String[] ArrayArks;
+            ArrayArks = (String[]) ListArks.toArray(new String[ListArks.size()]);
+            String list_ark_concat = create_arklist(ArrayArks);
+            System.out.println(list_ark_concat);
+            String[] Cons_idol = {answ[0], answ[1], answ[2], answ[3], answ[4], answ[5], list_ark_concat};
+            waifuAns =Consulta("one_consult_aux","X", Cons_idol.length, Cons_idol);
+            String[] waifu_def_ans = remove_repeat_waifu(waifuAns);
+            Waifu_ans_public = waifu_def_ans;
+            //System.out.println(list_ark_concat); funciona muy bien!
+            /* System.out.println("Array arks");
+            for (String ArrayArk : ArrayArks) {
+            System.out.println(ArrayArk);
+            }*/
+            //el uso de la funcion aux_ de prolog concatena el atomo que se le ha mandado.
+        }
+        //jList1.setListData(waifuAns);
+        //for (int i = 0; i < waifuAns.length; i++) {
+           // System.out.println();
+        //}
+        
+        
+        for(int y=1; y<countarklocal[0]; y++)// ciclo para repetir consultas en base al arquetipo
+        {
+            y++;
+         }
+        //waiifuAns = 
+        /*String[] hair = {answ[0],answ[1],answ[2]};
+        String[] eyes = {answ[3],answ[4]};
+        String age = answ[5];
+        String[] hairMap,eyesMap;
+        hairMap = Consulta("hair","X",hair.length, hair);
+        System.out.println("hair");
+        for (String hairMap1 : hairMap) {
+            System.out.println(hairMap1); 
+            jLabel3.setText(hairMap[1]);
+        }
+        eyesMap = Consulta("eyes","X",eyes.length, eyes);
+        System.out.println("eyes");
+        for (String eyesMap1 : eyesMap) {
+            System.out.println(eyesMap1); 
+        }*/
+        
+        //Waifu_ans_public = waifuAns;
+        displayWaifus(Waifu_ans_public);
+        if(Waifu_ans_public.length> 1)
+        jButton5.setEnabled(true);
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        if(waifucounter > 1)
+        {
+            waifucounter = waifucounter - 1;
+            displayWaifus(Waifu_ans_public);
+            jButton5.setEnabled(true);
+        }
+        else
+        {
+            waifucounter = 0;
+            displayWaifus(Waifu_ans_public);
+            jButton4.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+        //if()
+        if(waifucounter < Waifu_ans_public.length - 2)
+        {
+        waifucounter = waifucounter + 1;
+        displayWaifus(Waifu_ans_public);
+        }
+        else
+        {
+            waifucounter = Waifu_ans_public.length - 1;
+            displayWaifus(Waifu_ans_public);
+            jButton5.setEnabled(false);
         }
         
-        //Hashtable para eliminar waifus repetidas
-        
-        
-        
-                
-        displayWaifus(waifuAns);
-    }//GEN-LAST:event_jButton3MouseClicked
+        if(waifucounter > 0)
+        jButton4.setEnabled(true);
+    }//GEN-LAST:event_jButton5MouseClicked
 
     public String[] Consulta(String functionName,String X, int preguntas, String[] arregloQuery)
     {
@@ -364,7 +478,7 @@ public class interfacewaifu extends javax.swing.JFrame {
         Term[] tmpT;
         tmpT = new Term[1 + arregloQuery.length];
         
-        System.out.println("caraojo");
+        System.out.println("Consulta");
         tmpT[0] = new Variable(X);
         for (int k=1;k <= preguntas;k++)
         {
@@ -391,6 +505,34 @@ public class interfacewaifu extends javax.swing.JFrame {
         }
         
         return vars;
+        /*
+        
+        Query consulta = new Query(
+            new Compound(
+                "consult",
+                new Term [] {new Atom("waifus.pl")}
+            )            
+        );
+        if (consulta.hasSolution())
+            System.out.println("TRUE");
+        else
+            System.out.println("FALSE");
+        
+        String cons = functionName+"("+X+",";
+        for(int k=0;k<preguntas;k++)
+        {
+            cons = cons+arregloQuery[k];
+            if (k!=preguntas-1)
+                cons = cons+",";
+        }
+        cons = cons+").";
+        String tmppp = "hair(X,light,pink,long).";
+        System.out.println(cons);
+        Query tmp;
+        tmp = new Query(tmppp);
+        System.out.println(tmp.hasSolution());
+        */
+        
     }
     
     
@@ -411,30 +553,30 @@ public class interfacewaifu extends javax.swing.JFrame {
            answ[5]= "a"; // que el prolog pueda entender para que pueda hacer la inferencia de respuestas.
         if("from 15 to 17".equals(answ[5])) //VER LA SECCION %EDADES Y %GUSTOS de waifus.pl
            answ[5]= "b";
-        if("from 17 to 22".equals(answ[5]))
+        if("from 18 to 22".equals(answ[5]))
            answ[5]= "c";
         if(">  22".equals(answ[5]))
            answ[5]= "d";
         if("yes".equals(answ[6]))
-        { //moe
-            ListArks.add("moe");
-            countark[0]++;
-            countark[1]=1; //countark[1] se refiere a la pregunta 6.
-        }
+        { 
+           ListArks.add("love");
+           countark[0]++;
+           countark[1]=1; //countark[1] se refiere a la pregunta 6.
+           }
         if("yes".equals(answ[7]))
-        { //tsundere
-            ListArks.add("tsundare");
+        { 
+            ListArks.add("violent_char");
             countark[0]++;
             countark[2]=1;
         }
         if("yes".equals(answ[8]))
         { //answ[8]= "obsesive";
-            ListArks.add("obsesive");
+             ListArks.add("obsesive");
             countark[0]++;
             countark[3]=1;
          }
         if("yes".equals(answ[9]))
-        {   //answ[9]= "sadic";
+        {  //answ[9]= "sadic";
             ListArks.add("sadic");
             countark[0]++;
             countark[4]=1;
@@ -452,8 +594,8 @@ public class interfacewaifu extends javax.swing.JFrame {
             countark[6]=1;
         }
         if("yes".equals(answ[12]))
-        {  //dojikko
-            ListArks.add("dojikko");
+        {  
+            ListArks.add("clumsy");
             countark[0]++;
             countark[6]=1;
         }
@@ -494,10 +636,10 @@ public class interfacewaifu extends javax.swing.JFrame {
             countark[12]=1;
         }
         if("yes".equals(answ[19]))
-        {
-            //ListArks.add("idol");
-            answ[19]= "idol";
-        }
+           answ[19]= "idol";
+        else
+            answ[19]= "noidol";
+        
    return countark;
     }
     
@@ -552,13 +694,101 @@ public class interfacewaifu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     private void displayWaifus(String[] waifuAns) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
        //int ar = Waifuframe.waifuLib[0].waifuIndex();
+       //jLabel5.setText(waifuAns[0]);
+       
+       //waifucounter= 0;
+       Icon iconu2 = new ImageIcon(getClass().getResource("media\\sendou_erika.jpg"));
+       Waifuframe FindedWaifu = new Waifuframe(0,"","","",iconu2);
+       int IndexWaifu = wRecursive(waifuAns[waifucounter], FindedWaifu, 0); //hay que corregir unas cosas por aqui.
+       //jLabel2.setText(String.valueOf(findedwaifuindex));
+       waifuLib initlib = new waifuLib();
+       initlib.setlib();
+       jLabel3.setIcon(waifu_Lib[findedwaifuindex].waifuImage());
+       String Name = "Name: "+ waifu_Lib[findedwaifuindex].waifuName();
+       String Serie = "Serie: " + waifu_Lib[findedwaifuindex].waifuSerie();
+       jLabel4.setText(Name);
+       jLabel6.setText(Serie);
+       //jLabel5.setText(Wdata);
+       /*for(int fcount=0; fcount==1; fcount++)
+       {
+       String wtry = Waifuframe.waifu_Lib[fcount].waifiPLvariable();
+       jLabel3.setText(jLabel3.getText() +" , " +wtry);
+       if(wtry.equals(waifuAns[waifucounter]))
+       {
+       FindedWaifu = Waifuframe.waifu_Lib[fcount];
+       jLabel3.setIcon(FindedWaifu.waifuImage());
+       }
+       }*/
+       
+       /*if(FindedWaifu.waifiPLvariable().equals(waifuAns[0]))
+       jLabel5.setText("son iguales");
+       else{
+       jLabel5.setText("no son iguales");
+       }*/
+       
+       //jLabel3.setIcon(FindedWaifu.waifuImage());
+       //jLabel5.setText(FindedWaifu.waifiPLvariable() + " , "+ Waifuframe.waifu_Lib[0].waifiPLvariable());
        
       // jLabel3.setIcon(waifuAns[waifucounter] );
+    
+    }
+
+    private int wRecursive(String metaw, Waifuframe FindedWaifu, int iwaifu) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Fue un show hacer estom, fue un poco dificil, pero lo logre!.
+        //String waifu_pivote = Waifuframe.waifu_Lib[iwaifu].waifiPLvariable();
+        Waifuframe recursiveWaifu = FindedWaifu;
+        int index_spectr = 0;
+        if(waifu_Lib[iwaifu].your_name_is(metaw) == true)
+        {
+            
+            //jLabel5.setText(jLabel5.getText() +" , i"+ String.valueOf(iwaifu));
+            //jLabel5.setText(String.valueOf(iwaifu));
+            findedwaifuindex = iwaifu;
+            //jLabel3.setIcon( Waifuframe.waifu_Lib[iwaifu].waifuImage() );
+        }
+        else
+        {
+            //jLabel5.setText(jLabel5.getText()  +" , e"+ String.valueOf(iwaifu));
+            iwaifu ++;
+            String metawr = metaw;
+            wRecursive(metawr, recursiveWaifu, iwaifu);
+        }
+        return index_spectr;
+    }
+
+    private String[] remove_repeat_waifu(String[] waifuAns) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             Set<String> waifuSet;
+             waifuSet = new HashSet<>(Arrays.asList(waifuAns));
+             String[] waifuArray;
+             waifuArray = (String[]) waifuSet.toArray(new String[waifuSet.size()]);
+             
+             return waifuArray;
+    }
+
+    private String create_arklist(String[] ArrayArks) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String pros_list= "";
+        for(int er=0; er<ArrayArks.length; er++)
+        {
+            if(er==0)
+            pros_list = ""+ ArrayArks[0] +"-";
+            else if(er == ArrayArks.length - 1)
+            pros_list = pros_list + ArrayArks[ArrayArks.length - 1]+""; 
+            else
+                pros_list = pros_list + ArrayArks[er] + "-";
+        }
+        
+        return pros_list;
     }
 }
+
+  

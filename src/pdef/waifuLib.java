@@ -32,9 +32,9 @@ class waifuLib {
         Icon iakame = new ImageIcon(getClass().getResource("media\\akame.png"));
         Waifuframe.waifu_Lib[6] = new Waifuframe(6,"akame", "Akame", "Akame ga Kill", iakame);
         Icon iaisaka_taiga = new ImageIcon(getClass().getResource("media\\aisaka_taiga.jpg"));
-        Waifuframe.waifu_Lib[7] = new Waifuframe(7,"aisaka_taiga", "Aisaka Taiga", "Toradora!", iaisaka_taiga); 
+        Waifuframe.waifu_Lib[7] = new Waifuframe(7,"aisaka_taiga", "Aisaka Taiga", "Toradora!", iaisaka_taiga);
         Icon iyuuki_asuna = new ImageIcon(getClass().getResource("media\\yuuki_asuna.jpg"));
-        Waifuframe.waifu_Lib[8] = new Waifuframe(8,"yuuki_asuna", "Yuuki Asuna", "Sword Art Online", iyuuki_asuna); 
+        Waifuframe.waifu_Lib[8] = new Waifuframe(8,"yuuki_asuna", "Yuuki Asuna", "Sword Art Online", iyuuki_asuna);
         Icon iakazawa_izumi = new ImageIcon(getClass().getResource("media\\akazawa_izumi.jpg"));
         Waifuframe.waifu_Lib[9] = new Waifuframe(9,"akazawa_izumi", "Azakawa Izumi", "Another", iakazawa_izumi);
         Icon iaragaki_ayase = new ImageIcon(getClass().getResource("media\\aragaki_ayase.jpg"));
@@ -69,15 +69,15 @@ class waifuLib {
         Waifuframe.waifu_Lib[24] = new Waifuframe(24,"hiiragi_tsukasa", "Hiiragi Tsukasa", "Lucky Star", ihiiragi_tsukasa);
         Icon ihino_rei = new ImageIcon(getClass().getResource("media\\hino_rei.jpg"));
         Waifuframe.waifu_Lib[25] = new Waifuframe(25,"hino_rei", "Hino Rei", "Sailor Moon", ihino_rei);
-        Icon ihirasawa_yui = new ImageIcon(getClass().getResource("media\\ihirasawa_yui.jpg"));
+        Icon ihirasawa_yui = new ImageIcon(getClass().getResource("media\\hirasawa_yui.png"));
         Waifuframe.waifu_Lib[26] = new Waifuframe(26,"hirasawa_yui", "Hirisawa Yui", "Love live!", ihirasawa_yui);
-        Icon ihonoka_kousaka = new ImageIcon(getClass().getResource("media\\ihonoka_kousaka.jpg"));
+        Icon ihonoka_kousaka = new ImageIcon(getClass().getResource("media\\honoka_kousaka.jpg"));
         Waifuframe.waifu_Lib[27] = new Waifuframe(27,"honoka_kousaka", "Kousaka Honoka", "Love live!", ihonoka_kousaka);
-        Icon ihyuga_hinata = new ImageIcon(getClass().getResource("media\\ihyuga_hinata.jpg"));
+        Icon ihyuga_hinata = new ImageIcon(getClass().getResource("media\\hyuga_hinata.png"));
         Waifuframe.waifu_Lib[28] = new Waifuframe(28,"hyuga_hinata", "Hyuga Hinata", "Naruto", ihyuga_hinata);
-        Icon iichihara_yuko = new ImageIcon(getClass().getResource("media\\iichihara_yuko.jpg"));
+        Icon iichihara_yuko = new ImageIcon(getClass().getResource("media\\ichihara_yuko.jpg"));
         Waifuframe.waifu_Lib[29] = new Waifuframe(29,"ichihara_yuko", "Ichihara Yuko", "XXXHolic", iichihara_yuko);
-        Icon iichinose_kotomi = new ImageIcon(getClass().getResource("media\\iichinose_kotomi.jpg"));
+        Icon iichinose_kotomi = new ImageIcon(getClass().getResource("media\\ichinose_kotomi.jpg"));
         Waifuframe.waifu_Lib[30] = new Waifuframe(30,"ichinose_kotomi", "Ichinose Kotomi", "Clannad", iichinose_kotomi);
         Icon iikaros = new ImageIcon(getClass().getResource("media\\ikaros.jpg"));
         Waifuframe.waifu_Lib[31] = new Waifuframe(31,"ikaros", "Ikaros", "Sora no Otoshimono", iikaros);
@@ -91,22 +91,21 @@ class waifuLib {
         Waifuframe.waifu_Lib[35] = new Waifuframe(35,"katsura_kotonoha", "Katsura Kotonoha", "School days", ikatsura_kotonoha);
         Icon ikido_saori = new ImageIcon(getClass().getResource("media\\kido_saori.jpg"));
         Waifuframe.waifu_Lib[36] = new Waifuframe(36,"kido_saori", "Kido Saori", "Saint Seiya", ikido_saori);
-        Icon ikirigaya_suguha = new ImageIcon(getClass().getResource("media\\kirigaya_suguha.jpg"));
-        Waifuframe.waifu_Lib[37] = new Waifuframe(37,"kirigaya_suguha", "Karigaya Suguha", "Sword Art Online", ikirigaya_suguha);   
+        Icon ikirigaya_suguha = new ImageIcon(getClass().getResource("media\\kirigaya_suguha.png"));
+        Waifuframe.waifu_Lib[37] = new Waifuframe(37,"kirigaya_suguha", "Karigaya Suguha", "Sword Art Online", ikirigaya_suguha);
         Icon ikirigiri_kyoko = new ImageIcon(getClass().getResource("media\\kirigiri_kyoko.jpg"));
         Waifuframe.waifu_Lib[38] = new Waifuframe(38,"kirigiri_kyoko", "Karigiri Kyoko", "Danganronpa", ikirigiri_kyoko);
         Icon ikirisaki_chitoge = new ImageIcon(getClass().getResource("media\\kirisaki_chitoge.jpg"));
         Waifuframe.waifu_Lib[39] = new Waifuframe(39,"kirisaki_chitoge", "Karisaki Chitoge", "Nisekoi", ikirisaki_chitoge);
         Icon ikirisame_marisa = new ImageIcon(getClass().getResource("media\\kirisame_marisa.jpg"));
-        Waifuframe.waifu_Lib[40] = new Waifuframe(40,"kirisame_marisa", "Karisame Marisa", "Touhou Project", ikirisame_marisa);   
-        //
+        Waifuframe.waifu_Lib[40] = new Waifuframe(40,"kirisame_marisa", "Karisame Marisa", "Touhou Project", ikirisame_marisa);
+        
         Icon konjiki_no_yami = new ImageIcon(getClass().getResource("media\\konjiki_no_yami.jpg"));
         Waifuframe.waifu_Lib[41] = new Waifuframe(41,"konjiki_no_yami", "Konjiki No Yami", "To Love Ru", konjiki_no_yami);   
         Icon kushieda_minori = new ImageIcon(getClass().getResource("media\\kushieda_minori.jpg"));
-        Waifuframe.waifu_Lib[42] = new Waifuframe(42,"kushieda_minori", "Kushieda Minori", "UNK", kushieda_minori);   
+        Waifuframe.waifu_Lib[42] = new Waifuframe(42,"kushieda_minori", "Kushieda Minori", "Toradora", kushieda_minori);   
         Icon langley_asuka = new ImageIcon(getClass().getResource("media\\langley_asuka.jpg"));
-        Waifuframe.waifu_Lib[43] = new Waifuframe(43,"langley_asuka", "Langley Asuka", "Evangelion", langley_asuka);
-        
+        Waifuframe.waifu_Lib[43] = new Waifuframe(43,"langley_asuka", "Langley Asuka", "Evangelion", langley_asuka);  
         Icon littner_yoko = new ImageIcon(getClass().getResource("media\\littner_yoko.jpg"));
         Waifuframe.waifu_Lib[44] = new Waifuframe(44,"littner_yoko", "Littner Yoko", "Gurren Lagann", littner_yoko);
         Icon lucy = new ImageIcon(getClass().getResource("media\\lucy.jpg"));
@@ -136,14 +135,13 @@ class waifuLib {
         Waifuframe.waifu_Lib[56] = new Waifuframe(56,"onodere_kosaki", "Onodere Kosaki", "Nisekoi", onodere_kosaki);
         Icon ouma_mana = new ImageIcon(getClass().getResource("media\\ouma_mana.jpg"));
         Waifuframe.waifu_Lib[57] = new Waifuframe(57,"ouma_mana", "Ouma Mana", "Guilty Crown", ouma_mana);
-        Icon reikadou_ayame = new ImageIcon(getClass().getResource("media\\reikadou_ayame.jpg"));
+        Icon reikadou_ayame = new ImageIcon(getClass().getResource("media\\reikadou_ayame.png"));
         Waifuframe.waifu_Lib[58] = new Waifuframe(58,"reikadou_ayame", "Reikadou Ayame", "Ore No Nounai Sentakushi Ga", reikadou_ayame);
-        Icon ryuugu_rena = new ImageIcon(getClass().getResource("media\\ryuugu_rena.jpg"));
+        Icon ryuugu_rena = new ImageIcon(getClass().getResource("media\\ryuugu_rena.png"));
         Waifuframe.waifu_Lib[59] = new Waifuframe(59,"ryuugu_rena", "Ryuugu Rena", "Higurashi No Naku", ryuugu_rena);
         Icon sakihata_rimi = new ImageIcon(getClass().getResource("media\\sakihata_rimi.jpg"));
         Waifuframe.waifu_Lib[60] = new Waifuframe(60, "sakihata_rimi", "Sakihata Rimi", "UKN", sakihata_rimi);
         Icon satalin_lala = new ImageIcon(getClass().getResource("media\\satalin_lala.jpg"));
         Waifuframe.waifu_Lib[61] = new Waifuframe(61, "satalin_lala", "Satalin_lala", "To Love Ru", satalin_lala);
-        
     }
 }
